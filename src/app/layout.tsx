@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 
+import { buttonVariants } from "@/components/ui/button";
 import { homePath, ticketsPath } from "@/constants/paths";
 
 const geistSans = Geist({
@@ -33,14 +34,21 @@ export default function RootLayout({
       >
         <main className="py-24 px-8">
           <nav className="supports-backdrop-blur:bg-background/60 fixed left-0 top-0 right-0 z-10 py-4 px-8 bg-background/80">
-            <ul className="flex space-x-4">
-              <li>
-                <Link href={homePath}>Home</Link>
-              </li>
-              <li>
-                <Link href={ticketsPath}>Tickets</Link>
-              </li>
-            </ul>
+            <div className="flex space-x-4">
+              <Link
+                className={buttonVariants({ variant: "outline" })}
+                href={homePath}
+              >
+                Home
+              </Link>
+
+              <Link
+                className={buttonVariants({ variant: "outline" })}
+                href={ticketsPath}
+              >
+                Tickets
+              </Link>
+            </div>
           </nav>
           {children}
         </main>
