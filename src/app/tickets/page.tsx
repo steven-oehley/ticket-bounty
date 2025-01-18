@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { TICKET_ICONS } from "@/constants/constants";
 import { ticketPath } from "@/constants/paths";
 import initialTickets from "@/data/data";
@@ -21,12 +22,15 @@ const TicketsPage = () => {
           All your tickets in one place
         </p>
       </div>
+      <Separator />
       <div className="space-y-4 flex-1 flex flex-col items-center animate-fade-down animate-duration-800 animate-delay-100 animate-ease-out">
         {initialTickets.map((ticket) => (
           <Card key={ticket.id} className="w-full max-w-[420px]">
             <CardHeader>
-              <div className="w-1/12">{TICKET_ICONS[ticket.status]}</div>
-              <span className="text-slate-500">Ticket ID: {ticket.id}</span>
+              <div className="flex gap-2">
+                {TICKET_ICONS[ticket.status]}
+                <span className="text-slate-500">Ticket ID: {ticket.id}</span>
+              </div>
               <CardTitle>
                 <span className="font-bold text-lg">{ticket.title}</span>
               </CardTitle>

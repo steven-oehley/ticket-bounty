@@ -1,5 +1,6 @@
 import "./globals.css";
 
+import { LucideTicket } from "lucide-react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
@@ -36,14 +37,15 @@ export default function RootLayout({
           <nav className="supports-backdrop-blur:bg-background/60 fixed left-0 top-0 right-0 z-10 py-4 px-8 bg-background/80">
             <div className="flex space-x-4">
               <Link
-                className={buttonVariants({ variant: "outline" })}
+                className={buttonVariants({ variant: "ghost" })}
                 href={homePath}
               >
-                Home
+                <LucideTicket />
+                <h1 className="text-lg font-semibold">Ticket Bounty</h1>
               </Link>
 
               <Link
-                className={buttonVariants({ variant: "outline" })}
+                className={buttonVariants({ variant: "ghost" })}
                 href={ticketsPath}
               >
                 Tickets
