@@ -9,4 +9,9 @@
 (hold domain specific constants, types, components etc ensure only general components in components folder as well as ui components)
 - "use client" - enable client side JS
 - light and dark theme with shadcn
-
+- when using "use client" in a component all descendants become client components
+- tickets page - use client so ticketItem is client component 
+- ticket page is server so it is a server component on individual ticket page
+- means need to carefully consider composition 
+- see diagram image
+- way around this client component cascading effect - component composition pattern **NB
