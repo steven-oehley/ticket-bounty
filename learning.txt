@@ -7,3 +7,6 @@
 - adding Lucide in front of icons to avoid naming collisions
 - features folder - one folder for each domain 
 (hold domain specific constants, types, components etc ensure only general components in components folder as well as ui components)
+- "use client" - enable client side JS
+- light and dark theme with shadcn
+
