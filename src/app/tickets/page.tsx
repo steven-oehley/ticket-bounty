@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Link from "next/link";
 
+import Heading from "@/components/Heading";
 import {
   Card,
   CardContent,
@@ -8,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { TICKET_ICONS } from "@/constants/constants";
 import { ticketPath } from "@/constants/paths";
 import initialTickets from "@/data/data";
@@ -16,13 +16,7 @@ import initialTickets from "@/data/data";
 const TicketsPage = () => {
   return (
     <div className="flex-1 flex flex-col gap-y-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">Tickets Page</h2>
-        <p className="text-sm text-muted-foreground mb-4">
-          All your tickets in one place
-        </p>
-      </div>
-      <Separator />
+      <Heading title="Tickets" description="All your tickets in one place" />
       <div className="space-y-4 flex-1 flex flex-col items-center animate-fade-down animate-duration-800 animate-delay-100 animate-ease-out">
         {initialTickets.map((ticket) => (
           <Card key={ticket.id} className="w-full max-w-[420px]">

@@ -1,0 +1,7 @@
+- script for eslint
+- script for ts
+- shadcn and button as link
+- files for constants and paths
+- using clsx for conditional styles
+- adding shadcn theming 
+- adding Lucide in front of icons to avoid naming collisions

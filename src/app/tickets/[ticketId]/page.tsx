@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import Placeholder from "@/components/Placeholder";
+import { Button } from "@/components/ui/button";
 import { TICKET_ICONS } from "@/constants/constants";
 import { homePath } from "@/constants/paths";
 import initialTickets from "@/data/data";
@@ -15,7 +17,16 @@ const TicketPage = async ({ params }: TicketPageProps) => {
   );
 
   if (!ticket) {
-    return <div>Ticket not found</div>;
+    return (
+      <Placeholder
+        label="Ticket not found"
+        button={
+          <Button asChild variant="outline">
+            <Link href={homePath}>Back Home</Link>
+          </Button>
+        }
+      />
+    );
   }
 
   console.log(ticketId);
