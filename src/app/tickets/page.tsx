@@ -1,17 +1,6 @@
-import clsx from "clsx";
-import Link from "next/link";
-
 import Heading from "@/components/Heading";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { TICKET_ICONS } from "@/constants/constants";
-import { ticketPath } from "@/constants/paths";
 import initialTickets from "@/data/data";
+import TicketItem from "@/features/ticket/components/TicketItem";
 
 const TicketsPage = () => {
   return (
@@ -19,31 +8,7 @@ const TicketsPage = () => {
       <Heading title="Tickets" description="All your tickets in one place" />
       <div className="space-y-4 flex-1 flex flex-col items-center animate-fade-down animate-duration-800 animate-delay-100 animate-ease-out">
         {initialTickets.map((ticket) => (
-          <Card key={ticket.id} className="w-full max-w-[420px]">
-            <CardHeader>
-              <div className="flex gap-2">
-                {TICKET_ICONS[ticket.status]}
-                <span className="text-slate-500">Ticket ID: {ticket.id}</span>
-              </div>
-              <CardTitle>
-                <span className="font-bold text-lg">{ticket.title}</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <span
-                className={clsx("text-slate-500", "mb-2", {
-                  "line-through": ticket.status === "DONE",
-                })}
-              >
-                {ticket.content.split(" ").slice(0, 5).join(" ")}....
-              </span>
-            </CardContent>
-            <CardFooter>
-              <Link href={ticketPath(ticket.id)} className="text-sm underline">
-                View Ticket Details
-              </Link>
-            </CardFooter>
-          </Card>
+          <TicketItem key={ticket.id} ticket={ticket} />
         ))}
       </div>
     </div>

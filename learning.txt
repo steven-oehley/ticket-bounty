@@ -5,3 +5,5 @@
 - using clsx for conditional styles
 - adding shadcn theming 
 - adding Lucide in front of icons to avoid naming collisions
+- features folder - one folder for each domain 
+(hold domain specific constants, types, components etc ensure only general components in components folder as well as ui components)
