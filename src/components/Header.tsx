@@ -4,6 +4,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { homePath, ticketsPath } from "@/constants/paths";
 
+import { ThemeSwitcher } from "./theme/ThemeSwitcher";
 import { Separator } from "./ui/separator";
 
 const Header = () => {
@@ -21,7 +22,8 @@ const Header = () => {
             <h1 className="text-lg font-semibold">Ticket Bounty</h1>
           </Link>
         </div>
-        <div>
+        <div className="flex gap-4">
+          <ThemeSwitcher />
           <Link
             className={buttonVariants({ variant: "default" })}
             href={ticketsPath}
