@@ -15,3 +15,5 @@
 - means need to carefully consider composition 
 - see diagram image
 - way around this client component cascading effect - component composition pattern **NB
+- server component data fetching - fetch data then send over html
+- server components do not need to go through api - direct access to db 
