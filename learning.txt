@@ -17,3 +17,7 @@
 - way around this client component cascading effect - component composition pattern **NB
 - server component data fetching - fetch data then send over html
 - server components do not need to go through api - direct access to db 
+- Server Components stay on the server, render to HTML, and send only HTML to the client. They can't include client-side interactivity.
+- Client Components do initial rendering on server (for faster first page load), then "hydrate" on client 
+- meaning React reattaches event handlers and makes the component interactive. The component exists and runs in both environments.
+- Key difference: Server Components are render-only (HTML output), while Client Components enable interactivity after hydration.

@@ -3,9 +3,8 @@ import Link from "next/link";
 import Placeholder from "@/components/Placeholder";
 import { Button } from "@/components/ui/button";
 import { homePath } from "@/constants/paths";
-import initialTickets from "@/data/data";
 import TicketItem from "@/features/ticket/components/TicketItem";
-import { type Ticket as TicketType } from "@/features/ticket/types";
+import { getTicket } from "@/features/ticket/queries/getTicket";
 
 interface TicketPageProps {
   params: Promise<{ ticketId: string }>;
@@ -13,9 +12,7 @@ interface TicketPageProps {
 
 const TicketPage = async ({ params }: TicketPageProps) => {
   const { ticketId } = await params;
-  const ticket = initialTickets.find(
-    (ticket) => ticket.id === parseInt(ticketId)
-  ) as TicketType | undefined;
+  const ticket = await getTicket(ticketId);
 
   if (!ticket) {
     return (

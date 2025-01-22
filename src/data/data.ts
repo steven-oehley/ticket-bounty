@@ -1,4 +1,4 @@
-import { Ticket } from "@/constants/types";
+import { Ticket } from "@/features/ticket/types";
 
 export const initialTickets: Ticket[] = [
   {
