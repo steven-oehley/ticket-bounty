@@ -21,3 +21,5 @@
 - Client Components do initial rendering on server (for faster first page load), then "hydrate" on client 
 - meaning React reattaches event handlers and makes the component interactive. The component exists and runs in both environments.
 - Key difference: Server Components are render-only (HTML output), while Client Components enable interactivity after hydration.
+- **streaming: suspend what is async and render everything else immediately, this is streaming - use <Suspense></Suspense> but can not have async fetch outside the suspense, wont work
+- **suspense: allows to add fallback component - render until data or whatever is suspended is ready
