@@ -28,3 +28,5 @@
 - fallback routes: not-found.tsx
 - errors bubble to closest error.tsx file, same for loading files closest one applies
 - layout they can nest 
+- db setup postgres db on supabase, then npm i prisma and npx prisma init - add urls to ,environments
+- posinstall script, nb for deployment
