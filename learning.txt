@@ -32,3 +32,7 @@
 - posinstall script, nb for deployment
 - npx prisma db push - sync local and remote db, do after creating models effect
 - db migration taking local and putting it into a remote db (from here to somehwere, move db - schema and data)
+- prisma-seed script
+- npx prisma studio
+- lib folder for all third party services
+- prisma.ts in lib folder - singelton pattern for prisma client 

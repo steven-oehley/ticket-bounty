@@ -1,4 +1,4 @@
-import initialTickets from "@/data/data";
+import initialTickets from "@/data/seed";
 import { type Ticket as TicketType } from "@/features/ticket/types";
 
 // mimic client side data fetching

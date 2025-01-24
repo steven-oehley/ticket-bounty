@@ -1,4 +1,4 @@
-import initialTickets from "@/data/data";
+import initialTickets from "@/data/seed";
 
 import { Ticket } from "../types";
 

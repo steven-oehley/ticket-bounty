@@ -1,36 +1,44 @@
-import { Ticket } from "@/features/ticket/types";
+import { PrismaClient, TicketStatus } from "@prisma/client";
 
-export const initialTickets: Ticket[] = [
+const prisma = new PrismaClient();
+
+export const initialTickets = [
   {
-    id: 1,
     title: "Implement User Authentication",
-    status: "OPEN",
+    status: TicketStatus.OPEN,
     content: "Set up JWT authentication system with login/logout functionality",
   },
   {
-    id: 2,
     title: "Fix Navigation Menu Bug",
-    status: "DONE",
+    status: TicketStatus.DONE,
     content: "Resolve dropdown menu not closing on mobile devices",
   },
   {
-    id: 3,
     title: "Add Payment Integration",
-    status: "IN_PROGRESS",
+    status: TicketStatus.IN_PROGRESS,
     content: "Integrate Stripe payment gateway for premium subscriptions",
   },
   {
-    id: 4,
     title: "Optimize Image Loading",
-    status: "OPEN",
+    status: TicketStatus.OPEN,
     content: "Implement lazy loading for better performance on image gallery",
   },
   {
-    id: 5,
     title: "Update Documentation",
-    status: "DONE",
+    status: TicketStatus.DONE,
     content: "Update API documentation with new endpoints and examples",
   },
 ];
 
-export default initialTickets;
+const seed = async () => {
+  const t0 = performance.now();
+
+  await prisma.ticket.deleteMany({});
+  await prisma.ticket.createMany({ data: initialTickets });
+
+  const t1 = performance.now();
+
+  console.log(`Seeded database in ${t1 - t0}ms`);
+};
+
+seed();
