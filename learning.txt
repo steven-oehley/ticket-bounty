@@ -41,3 +41,5 @@
 - server actions can be used in client and server components- prisma cant be accessed in a client component so need a server action
 - server action like gateway from client component to server side again, created with "use server" directive inside of function 
 - used in client components, not allowed to mix server side and client side code - must be in a seperate file
+- server action in server components - server components do not hydrate on the client, no js sent, no onclick
+- way around - wrap button in form with an action
