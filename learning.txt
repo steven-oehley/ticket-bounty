@@ -30,3 +30,5 @@
 - layout they can nest 
 - db setup postgres db on supabase, then npm i prisma and npx prisma init - add urls to ,environments
 - posinstall script, nb for deployment
+- npx prisma db push - sync local and remote db, do after creating models effect
+- db migration taking local and putting it into a remote db (from here to somehwere, move db - schema and data)
