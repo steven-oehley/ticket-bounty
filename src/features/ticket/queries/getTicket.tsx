@@ -1,15 +1,17 @@
-import initialTickets from "@/data/seed";
 import { type Ticket as TicketType } from "@/features/ticket/types";
-
-// mimic client side data fetching
+import { prisma } from "@/lib/prisma";
 
 export const getTicket = async (
   ticketId: string
-): Promise<TicketType | undefined> => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  const ticket = initialTickets.find(
-    (ticket) => ticket.id === parseInt(ticketId)
-  );
-  return ticket;
+): Promise<TicketType | null> => {
+  try {
+    return (
+      (await prisma.ticket.findUnique({
+        where: { id: ticketId },
+      })) || null
+    );
+  } catch (error) {
+    console.error("Database error:", error);
+    throw new Error("Failed to fetch ticket");
+  }
 };

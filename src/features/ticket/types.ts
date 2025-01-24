@@ -4,7 +4,7 @@ type TicketStatus = "OPEN" | "IN_PROGRESS" | "DONE";
 
 // Type for a ticket
 interface Ticket {
-  id: number;
+  id: string;
   title: string;
   status: TicketStatus;
   content: string;

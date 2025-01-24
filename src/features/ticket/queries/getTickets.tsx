@@ -1,13 +1,15 @@
-import initialTickets from "@/data/seed";
+import { Ticket } from "@prisma/client";
 
-import { Ticket } from "../types";
-
-// mimic client side data fetching
+import { prisma } from "@/lib/prisma";
 
 export const getTickets = async (): Promise<Ticket[]> => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-
-  return new Promise((resolve) => {
-    resolve(initialTickets);
-  });
+  try {
+    const tickets = await prisma.ticket.findMany();
+    return tickets;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Database error:", error.message);
+    }
+    return [];
+  }
 };
