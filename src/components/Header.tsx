@@ -10,7 +10,7 @@ import { Separator } from "./ui/separator";
 const Header = () => {
   return (
     <nav className="supports-backdrop-blur:bg-background/60 fixed left-0 top-0 right-0 z-10 py-4 px-8 bg-background/80 ">
-      <div className="flex justify-between mb-2">
+      <div className="flex justify-between mb-4">
         <div>
           <Link
             className={`${buttonVariants({

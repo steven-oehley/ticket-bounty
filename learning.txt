@@ -23,3 +23,8 @@
 - Key difference: Server Components are render-only (HTML output), while Client Components enable interactivity after hydration.
 - **streaming: suspend what is async and render everything else immediately, this is streaming - use <Suspense></Suspense> but can not have async fetch outside the suspense, wont work
 - **suspense: allows to add fallback component - render until data or whatever is suspended is ready
+- fallback routes: loading.tsx - when suspense boundary should be for entire page - more fine grained use suspense
+- fallback routes: unhappy path for when things go wrong - error.tsx  - alternative ErrorBoundary from react-error-boundary
+- fallback routes: not-found.tsx
+- errors bubble to closest error.tsx file, same for loading files closest one applies
+- layout they can nest 

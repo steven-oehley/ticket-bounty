@@ -38,7 +38,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="py-24 px-8">{children}</main>
+          <main
+            className="
+            min-h-screen flex-1
+            overflow-y-auto overflow-x-hidden
+            py-24 px-8
+            flex flex-col
+          "
+          >
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
