@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ticketPath } from "@/constants/paths";
 
 interface TicketItemButtonProps {
-  ticketId: number;
+  ticketId: string;
 }
 
 const TicketItemButton = ({ ticketId }: TicketItemButtonProps) => {

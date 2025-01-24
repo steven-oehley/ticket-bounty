@@ -1,4 +1,5 @@
-import { type Ticket as TicketType } from "@/features/ticket/types";
+import { type Ticket as TicketType } from "@prisma/client";
+
 import { prisma } from "@/lib/prisma";
 
 export const getTicket = async (

@@ -36,3 +36,8 @@
 - npx prisma studio
 - lib folder for all third party services
 - prisma.ts in lib folder - singelton pattern for prisma client 
+- ** NB special characters in a db password will cause issues - they need to be escaped
+- server actions are there to write data to the server
+- server actions can be used in client and server components- prisma cant be accessed in a client component so need a server action
+- server action like gateway from client component to server side again, created with "use server" directive inside of function 
+- used in client components, not allowed to mix server side and client side code - must be in a seperate file
