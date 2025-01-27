@@ -43,3 +43,30 @@
 - used in client components, not allowed to mix server side and client side code - must be in a seperate file
 - server action in server components - server components do not hydrate on the client, no js sent, no onclick
 - way around - wrap button in form with an action
+- caching behaves differently in dev and prod in nextjs (npm run build and npm run start to see build version)
+- edit next config, must be very careful with caching cause errors that are hard to debug
+- router cache also called prefetch app level ibn config / client side cache, prefetch tag in link components page level - fetch when link enters viewport
+
+App Router (Next.js 13+):
+  experimental: {
+    staleTimes: {
+      dynamic: 30,
+    },
+
+Prefetching is automatic for static routes
+For dynamic routes, use:
+    Key things to remember:
+    Prefetching only happens in production
+    It's automatically disabled if the user has a slow connection or data-saver mode
+    Pages are prefetched with a low priority, so it won't impact the current page's performance
+    The prefetched data is kept in the browser's memory cache for 5 
+    
+- caching in next - router cache and full router cache (runs on ss / hard cache)
+
+static routes are cached at build time 
+dynamic are fetched
+dynamic vs static rendering video - good to revisit
+
+add export const dynamic = "force-dynamic"
+is a Next.js configuration directive that forces a route to be dynamically rendered at request time, bypassing static optimization. 
+

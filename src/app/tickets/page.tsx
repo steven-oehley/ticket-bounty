@@ -4,6 +4,10 @@ import Heading from "@/components/Heading";
 import Spinner from "@/components/Spinner";
 import TicketList from "@/features/ticket/components/TicketList";
 
+// enable dynamically rendered at request time, bypassing static optimization
+// not best approach, but can be useful in some cases
+export const dynamic = "force-dynamic";
+
 const TicketsPage = async () => {
   return (
     <div className="flex-1 flex flex-col gap-y-8">
