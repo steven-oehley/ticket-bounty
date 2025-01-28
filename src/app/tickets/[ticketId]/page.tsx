@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { homePath } from "@/constants/paths";
 import TicketItem from "@/features/ticket/components/TicketItem";
 import { getTicket } from "@/features/ticket/queries/getTicket";
-import { getTickets } from "@/features/ticket/queries/getTickets";
 
 interface TicketPageProps {
   params: Promise<{ ticketId: string }>;
