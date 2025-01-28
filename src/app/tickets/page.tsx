@@ -6,7 +6,7 @@ import TicketList from "@/features/ticket/components/TicketList";
 
 // enable dynamically rendered at request time, bypassing static optimization
 // not best approach, but can be useful in some cases
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 const TicketsPage = async () => {
   return (

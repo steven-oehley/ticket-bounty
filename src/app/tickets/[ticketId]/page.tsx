@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { homePath } from "@/constants/paths";
 import TicketItem from "@/features/ticket/components/TicketItem";
 import { getTicket } from "@/features/ticket/queries/getTicket";
+import { getTickets } from "@/features/ticket/queries/getTickets";
 
 interface TicketPageProps {
   params: Promise<{ ticketId: string }>;
@@ -33,5 +34,12 @@ const TicketPage = async ({ params }: TicketPageProps) => {
     </div>
   );
 };
+
+export async function generateStaticParams() {
+  const tickets = await getTickets();
+  return tickets.map((ticket) => ({
+    ticketId: ticket.id,
+  }));
+}
 
 export default TicketPage;
