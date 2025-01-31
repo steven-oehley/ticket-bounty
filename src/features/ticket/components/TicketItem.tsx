@@ -1,13 +1,18 @@
 import { Ticket } from "@prisma/client";
 import clsx from "clsx";
-import { LucideTrash } from "lucide-react";
+import {
+  LucidePencil,
+  LucideSquareArrowOutUpRight,
+  LucideTrash,
+} from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ticketEditPath, ticketPath } from "@/constants/paths";
 
 import { deleteTicket } from "../actions/deleteTicket";
 import { TICKET_ICONS } from "../constants";
-import TicketItemButton from "./TicketItemButton";
 
 interface TicketItemProps {
   ticket: Ticket;
@@ -21,22 +26,40 @@ const TicketItem = ({ ticket, isDetail = false }: TicketItemProps) => {
         <LucideTrash />
       </Button>
     </form>
-
-    // OR CAN DO LIKE THIS
-    // <form>
-    //   <Button
-    //     variant="outline"
-    //     size="icon"
-    //     type="submit"
-    //     formAction={async () => {
-    //       "use server";
-    //       await deleteTicket(ticket.id);
-    //     }}
-    //   >
-    //     <LucideTrash />
-    //   </Button>
-    // </form>
   );
+
+  const editButton = (
+    <Link href={ticketEditPath(ticket.id)} className="text-sm underline">
+      <Button variant="outline" size="icon" type="submit">
+        <LucidePencil />
+      </Button>
+    </Link>
+  );
+
+  const viewButton = (
+    <div>
+      <Link href={ticketPath(ticket.id)} className="text-sm underline">
+        <Button variant="outline" size="icon">
+          <LucideSquareArrowOutUpRight />
+        </Button>
+      </Link>
+    </div>
+  );
+
+  // OR CAN DO LIKE THIS
+  // <form>
+  //   <Button
+  //     variant="outline"
+  //     size="icon"
+  //     type="submit"
+  //     formAction={async () => {
+  //       "use server";
+  //       await deleteTicket(ticket.id);
+  //     }}
+  //   >
+  //     <LucideTrash />
+  //   </Button>
+  // </form>
 
   return (
     <div
@@ -71,7 +94,19 @@ const TicketItem = ({ ticket, isDetail = false }: TicketItemProps) => {
           </span>
         </CardContent>
       </Card>
-      {!isDetail ? <TicketItemButton ticketId={ticket.id} /> : deleteButton}
+      <div className="flex flex-col gap-y-2">
+        {!isDetail ? (
+          <>
+            {editButton}
+            {viewButton}
+          </>
+        ) : (
+          <>
+            {editButton}
+            {deleteButton}
+          </>
+        )}
+      </div>
     </div>
   );
 };

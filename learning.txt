@@ -106,3 +106,7 @@ export async function generateStaticParams() {
 
 but then all same old rules apply about static rendering 
 need revalidation
+
+- configuration over composition (Software Craftmanship)
+- When you use server actions directly in a form's action prop, the formData gets automatically passed to the server action. 
+- can pass arguments with hidden inputs and value/default values
