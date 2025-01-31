@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import CardCompact from "@/components/CardCompact";
-import TicketEditForm from "@/features/ticket/components/TicketEditForm";
+import TicketUpsertForm from "@/features/ticket/components/TicketUpsertForm";
 import { getTicket } from "@/features/ticket/queries/getTicket";
 
 interface TicketEditFormProps {
@@ -24,7 +24,7 @@ const TicketEditPage = async ({ params }: TicketEditFormProps) => {
         title="Edit Ticket"
         description="Edit an existing ticket"
       >
-        <TicketEditForm ticket={ticket} />
+        <TicketUpsertForm ticket={ticket} />
       </CardCompact>
     </div>
   );

@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import CardCompact from "@/components/CardCompact";
 import Heading from "@/components/Heading";
 import Spinner from "@/components/Spinner";
-import TicketCreateForm from "@/features/ticket/components/TicketCreateForm";
 import TicketList from "@/features/ticket/components/TicketList";
+import TicketUpsertForm from "@/features/ticket/components/TicketUpsertForm";
 
 // enable dynamically rendered at request time, bypassing static optimization
 // not best approach, but can be useful in some cases
@@ -20,7 +20,7 @@ const TicketsPage = () => {
           title="Create Ticket"
           description="Create a new ticket"
         >
-          <TicketCreateForm />
+          <TicketUpsertForm />
         </CardCompact>
         <Suspense fallback={<Spinner />}>
           <TicketList />

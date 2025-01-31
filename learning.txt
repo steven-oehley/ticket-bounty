@@ -110,3 +110,11 @@ need revalidation
 - configuration over composition (Software Craftmanship)
 - When you use server actions directly in a form's action prop, the formData gets automatically passed to the server action. 
 - can pass arguments with hidden inputs and value/default values
+- progressive enhancement means that forms can work without any js - just html and a post request through an action (can test if app works without js)
+Progressive enhancement is a web development strategy that prioritizes delivering a basic, functional experience first, then progressively adding enhanced features based on browser capabilities.
+Key aspects:
+
+Core functionality works for all users with basic HTML/CSS
+JavaScript enhances experience but isn't required
+Modern features (animations, advanced APIs) added as optional layers
+Graceful degradation on older browsers
