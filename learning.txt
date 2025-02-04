@@ -118,3 +118,10 @@ Core functionality works for all users with basic HTML/CSS
 JavaScript enhances experience but isn't required
 Modern features (animations, advanced APIs) added as optional layers
 Graceful degradation on older browsers
+
+
+Forms in NextJs and ReactJs
+- by starting with basic form like course teaches we have a form that requires no js
+- by using bind we eliminate the need for a handler - no JS
+- form works in browsers where no JS is running (have to test by building and starting project)
+- from here we can add progressive enhancement by adding js functionality but keeping core function able to work even when no JS running 
