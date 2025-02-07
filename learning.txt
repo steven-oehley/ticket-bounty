@@ -110,6 +110,7 @@ need revalidation
 - configuration over composition (Software Craftmanship)
 - When you use server actions directly in a form's action prop, the formData gets automatically passed to the server action. 
 - can pass arguments with hidden inputs and value/default values
+
 - progressive enhancement means that forms can work without any js - just html and a post request through an action (can test if app works without js)
 Progressive enhancement is a web development strategy that prioritizes delivering a basic, functional experience first, then progressively adding enhanced features based on browser capabilities.
 Key aspects:
@@ -136,3 +137,15 @@ useFormStatus() - returns an object { pending } which pending can be destructure
 caveat: need to have the { pending } = useFormStatus() inside the form - can not be called at top level of form 
 need to place in lower level component - therefore called within <form> </form>
 our case move to button - SubmitBtn
+
+useActionState
+
+[actionState, action] = useActionState(action, initialState)
+useAction state returns an enhanced action and the state of the action 
+takes in a server action and some initial state
+
+need to edit server action as get access to the actionState
+first/second param, formData will become 2nd/3rd
+can return an object of state from the actionState and use that in the form to display message
+
+

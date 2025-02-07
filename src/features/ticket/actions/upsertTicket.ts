@@ -6,8 +6,13 @@ import { redirect } from "next/navigation";
 import { ticketsPath } from "@/constants/paths";
 import { prisma } from "@/lib/prisma";
 
+interface TActionState {
+  message: string;
+}
+
 export const upsertTicket = async (
   ticketId: string | undefined,
+  _actionState: TActionState,
   formData: FormData
 ) => {
   const data = {
@@ -26,4 +31,6 @@ export const upsertTicket = async (
   if (ticketId) {
     return redirect(ticketsPath);
   }
+
+  return { message: "Ticket created successfully!" };
 };
