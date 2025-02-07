@@ -125,3 +125,8 @@ Forms in NextJs and ReactJs
 - by using bind we eliminate the need for a handler - no JS
 - form works in browsers where no JS is running (have to test by building and starting project)
 - from here we can add progressive enhancement by adding js functionality but keeping core function able to work even when no JS running 
+
+- Progressive enhancement with react hooks
+- useTransition access to an array [isPending, startTransition] ---> variable and function
+- isPending - use to track 
+- wrap want you want to track in start transition function 
