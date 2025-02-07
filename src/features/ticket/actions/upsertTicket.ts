@@ -22,5 +22,8 @@ export const upsertTicket = async (
   });
 
   revalidatePath(ticketsPath);
-  redirect(ticketsPath);
+
+  if (ticketId) {
+    return redirect(ticketsPath);
+  }
 };

@@ -130,3 +130,9 @@ Forms in NextJs and ReactJs
 - useTransition access to an array [isPending, startTransition] ---> variable and function
 - isPending - use to track 
 - wrap want you want to track in start transition function 
+
+UseFormStatus prefered over useTransition - no need to manually track transition 
+useFormStatus() - returns an object { pending } which pending can be destructured from 
+caveat: need to have the { pending } = useFormStatus() inside the form - can not be called at top level of form 
+need to place in lower level component - therefore called within <form> </form>
+our case move to button - SubmitBtn
