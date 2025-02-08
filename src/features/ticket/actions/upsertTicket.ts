@@ -13,8 +13,16 @@ interface TActionState {
 }
 
 const upsertTicketSchema = z.object({
-  title: z.string().nonempty().min(3).max(191),
-  content: z.string().nonempty().min(10).max(1024),
+  title: z
+    .string()
+    .nonempty({ message: "Title is required" })
+    .min(3, { message: "Title must be at least 3 characters long" })
+    .max(191, { message: "Title cannot exceed 191 characters" }),
+  content: z
+    .string()
+    .nonempty({ message: "Content is required" })
+    .min(10, { message: "Content must be at least 10 characters long" })
+    .max(1024, { message: "Content cannot exceed 1024 characters" }),
 });
 
 export const upsertTicket = async (
