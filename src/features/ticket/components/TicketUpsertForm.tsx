@@ -31,7 +31,9 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
           placeholder="Enter ticket title..."
           required
           className="w-full"
-          defaultValue={ticket?.title}
+          defaultValue={
+            (actionState.payload?.get("title") as string) ?? ticket?.title
+          }
         />
       </div>
 
@@ -43,7 +45,9 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
           placeholder="Enter ticket details..."
           required
           className="w-full min-h-32"
-          defaultValue={ticket?.content}
+          defaultValue={
+            (actionState.payload?.get("content") as string) ?? ticket?.content
+          }
         />
       </div>
       <SubmitButton ticket={ticket} />

@@ -9,6 +9,7 @@ import { prisma } from "@/lib/prisma";
 
 interface TActionState {
   message: string;
+  payload?: FormData;
 }
 
 const upsertTicketSchema = z.object({
@@ -36,7 +37,7 @@ export const upsertTicket = async (
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
-    return { message: "Failed to create ticket!" };
+    return { message: "Failed to create ticket!", payload: formData };
   }
 
   revalidatePath(ticketsPath);
