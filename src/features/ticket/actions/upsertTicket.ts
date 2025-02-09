@@ -7,7 +7,7 @@ import { z } from "zod";
 import {
   fromErrorToActionState,
   TActionState,
-} from "@/components/form/utils/toActionState";
+} from "@/components/form/utils/fromErrorToActionState";
 import { ticketsPath } from "@/constants/paths";
 import { prisma } from "@/lib/prisma";
 
@@ -30,10 +30,8 @@ export const upsertTicket = async (
   ticketId: string | undefined,
   _actionState: TActionState,
   formData: FormData
-) => {
+): Promise<TActionState> => {
   try {
-    // validation errors can occur here
-    // need to handle them
     const data = upsertTicketSchema.parse({
       title: formData.get("title"),
       content: formData.get("content"),
@@ -44,15 +42,19 @@ export const upsertTicket = async (
       update: data,
       create: data,
     });
+
+    revalidatePath(ticketsPath);
+
+    if (ticketId) {
+      redirect(ticketsPath);
+    }
+
+    return {
+      message: "Ticket created successfully!",
+      fieldErrors: {},
+      payload: formData,
+    };
   } catch (e) {
     return fromErrorToActionState(e, formData);
   }
-
-  revalidatePath(ticketsPath);
-
-  if (ticketId) {
-    return redirect(ticketsPath);
-  }
-
-  return { message: "Ticket created successfully!" };
 };

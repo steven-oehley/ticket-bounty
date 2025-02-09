@@ -147,6 +147,8 @@ takes in a server action and some initial state
 need to edit server action as get access to the actionState
 first/second param, formData will become 2nd/3rd
 can return an object of state from the actionState and use that in the form to display message
+can split even further after using zod and get individual messages for each field. 
+It is crazy!!! : o
 
 form validation 
 zod library is useful for this 

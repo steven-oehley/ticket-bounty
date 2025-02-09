@@ -19,6 +19,8 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
     upsertTicket.bind(null, ticket?.id),
     {
       message: "",
+      fieldErrors: {},
+      payload: new FormData(),
     }
   );
   return (
@@ -34,6 +36,11 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
             (actionState.payload?.get("title") as string) ?? ticket?.title
           }
         />
+        {actionState.fieldErrors?.title && (
+          <span className="text-sm text-red-500">
+            {actionState.fieldErrors.title}
+          </span>
+        )}
       </div>
 
       <div className="space-y-2">
@@ -47,9 +54,24 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
             (actionState.payload?.get("content") as string) ?? ticket?.content
           }
         />
+        {actionState.fieldErrors?.content && (
+          <span className="text-sm text-red-500">
+            {actionState.fieldErrors.content}
+          </span>
+        )}
       </div>
       <SubmitButton ticket={ticket} />
-      <span className="text-red-500">{actionState?.message}</span>
+      {actionState.message && (
+        <span
+          className={`text-sm ${
+            actionState.message.includes("success")
+              ? "text-green-500"
+              : "text-red-500"
+          }`}
+        >
+          {actionState.message}
+        </span>
+      )}
     </form>
   );
 };
