@@ -4,7 +4,7 @@ export interface TActionState {
   status?: "SUCCESS" | "ERROR";
   message: string;
   fieldErrors: Record<string, string> | undefined;
-  payload: FormData;
+  payload?: FormData;
   timestamp?: number;
 }
 
@@ -54,15 +54,11 @@ export const fromErrorToActionState = (
   };
 };
 
-export const toActionState = (
-  message: string,
-  formData: FormData
-): TActionState => {
+export const toActionState = (message: string): TActionState => {
   return {
     status: "SUCCESS",
     message,
     fieldErrors: {},
-    payload: formData,
     timestamp: Date.now(),
   };
 };

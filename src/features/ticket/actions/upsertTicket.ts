@@ -50,7 +50,7 @@ export const upsertTicket = async (
       redirect(ticketsPath);
     }
 
-    return toActionState("Ticket created successfully!", formData);
+    return toActionState("Ticket created successfully!");
   } catch (e) {
     return fromErrorToActionState(e, formData);
   }
