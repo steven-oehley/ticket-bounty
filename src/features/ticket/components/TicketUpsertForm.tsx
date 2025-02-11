@@ -5,6 +5,7 @@ import { useActionState } from "react";
 
 import FieldError from "@/components/form/FieldError";
 import SubmitButton from "@/components/form/SubmitButton";
+import { EMPTY_ACTION_STATE } from "@/components/form/utils/fromErrorToActionState";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,11 +19,7 @@ interface TicketUpsertFormProps {
 const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(
     upsertTicket.bind(null, ticket?.id),
-    {
-      message: "",
-      fieldErrors: {},
-      payload: new FormData(),
-    }
+    EMPTY_ACTION_STATE
   );
   return (
     <form action={action} className="flex flex-col gap-y-2">
@@ -51,14 +48,10 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
             (actionState.payload?.get("content") as string) ?? ticket?.content
           }
         />
-        {actionState.fieldErrors?.content && (
-          <span className="text-sm text-red-500">
-            {actionState.fieldErrors.content}
-          </span>
-        )}
+        <FieldError error={actionState.fieldErrors?.content} />
       </div>
       <SubmitButton ticket={ticket} />
-      <FieldError error={actionState.fieldErrors?.content} />
+      {actionState.message && <p>{actionState.message}</p>}
     </form>
   );
 };
