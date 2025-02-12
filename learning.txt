@@ -41,7 +41,7 @@
 - server actions can be used in client and server components- prisma cant be accessed in a client component so need a server action
 - server action like gateway from client component to server side again, created with "use server" directive inside of function 
 - used in client components, not allowed to mix server side and client side code - must be in a seperate file
-- server action in server components - server components do not hydrate on the client, no js sent, no onclick
+- server action in server components - server components do not hydrate on the client, no js sent, no onclick ** NB
 - way around - wrap button in form with an action
 - caching behaves differently in dev and prod in nextjs (npm run build and npm run start to see build version)
 - edit next config, must be very careful with caching cause errors that are hard to debug
@@ -152,3 +152,11 @@ It is crazy!!! : o
 
 form validation 
 zod library is useful for this 
+
+
+** Cookies
+- dark side is tracking, advertising etc
+- common use case is to store some state across page navigations
+- most common authentication 
+- our app a redirect throws off the toast notification
+- set cookie and check it so we can display after redirect

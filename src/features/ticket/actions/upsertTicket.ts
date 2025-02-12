@@ -12,6 +12,8 @@ import {
 import { ticketsPath } from "@/constants/paths";
 import { prisma } from "@/lib/prisma";
 
+import { setCookieByKey } from "./cookies";
+
 const upsertTicketSchema = z.object({
   title: z
     .string()
@@ -43,15 +45,18 @@ export const upsertTicket = async (
       update: data,
       create: data,
     });
-
-    revalidatePath(ticketsPath);
-
-    if (ticketId) {
-      redirect(ticketsPath);
-    }
-
-    return toActionState("Ticket created successfully!");
   } catch (e) {
+    console.error(e);
     return fromErrorToActionState(e, formData);
   }
+
+  // Handle redirect outside of try-catch, similar to deleteTicket
+  revalidatePath(ticketsPath);
+
+  if (ticketId) {
+    await setCookieByKey("toast", "Ticket updated successfully!");
+    redirect(ticketsPath);
+  }
+
+  return toActionState("Ticket created successfully!");
 };
