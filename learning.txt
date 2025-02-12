@@ -110,6 +110,7 @@ need revalidation
 - configuration over composition (Software Craftmanship)
 - When you use server actions directly in a form's action prop, the formData gets automatically passed to the server action. 
 - can pass arguments with hidden inputs and value/default values
+
 - progressive enhancement means that forms can work without any js - just html and a post request through an action (can test if app works without js)
 Progressive enhancement is a web development strategy that prioritizes delivering a basic, functional experience first, then progressively adding enhanced features based on browser capabilities.
 Key aspects:
@@ -118,3 +119,36 @@ Core functionality works for all users with basic HTML/CSS
 JavaScript enhances experience but isn't required
 Modern features (animations, advanced APIs) added as optional layers
 Graceful degradation on older browsers
+
+
+Forms in NextJs and ReactJs
+- by starting with basic form like course teaches we have a form that requires no js
+- by using bind we eliminate the need for a handler - no JS
+- form works in browsers where no JS is running (have to test by building and starting project)
+- from here we can add progressive enhancement by adding js functionality but keeping core function able to work even when no JS running 
+
+- Progressive enhancement with react hooks
+- useTransition access to an array [isPending, startTransition] ---> variable and function
+- isPending - use to track 
+- wrap want you want to track in start transition function 
+
+UseFormStatus prefered over useTransition - no need to manually track transition 
+useFormStatus() - returns an object { pending } which pending can be destructured from 
+caveat: need to have the { pending } = useFormStatus() inside the form - can not be called at top level of form 
+need to place in lower level component - therefore called within <form> </form>
+our case move to button - SubmitBtn
+
+useActionState
+
+[actionState, action] = useActionState(action, initialState)
+useAction state returns an enhanced action and the state of the action 
+takes in a server action and some initial state
+
+need to edit server action as get access to the actionState
+first/second param, formData will become 2nd/3rd
+can return an object of state from the actionState and use that in the form to display message
+can split even further after using zod and get individual messages for each field. 
+It is crazy!!! : o
+
+form validation 
+zod library is useful for this 
