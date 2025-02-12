@@ -2,6 +2,7 @@ import { Suspense } from "react";
 
 import CardCompact from "@/components/CardCompact";
 import Heading from "@/components/Heading";
+import { RedirectToast } from "@/components/RedirectToast";
 import Spinner from "@/components/Spinner";
 import TicketList from "@/features/ticket/components/TicketList";
 import TicketUpsertForm from "@/features/ticket/components/TicketUpsertForm";
@@ -12,21 +13,27 @@ import TicketUpsertForm from "@/features/ticket/components/TicketUpsertForm";
 
 const TicketsPage = () => {
   return (
-    <div className="flex-1 flex flex-col  w-full">
-      <div className="max-w-xl mx-auto w-full space-y-8">
-        <Heading title="Tickets" description="All your tickets in one place" />
-        <CardCompact
-          className="animate-fade-down animate-duration-800 animate-delay-100 animate-ease-out"
-          title="Create Ticket"
-          description="Create a new ticket"
-        >
-          <TicketUpsertForm />
-        </CardCompact>
-        <Suspense fallback={<Spinner />}>
-          <TicketList />
-        </Suspense>
+    <>
+      <div className="flex-1 flex flex-col  w-full">
+        <div className="max-w-xl mx-auto w-full space-y-8">
+          <Heading
+            title="Tickets"
+            description="All your tickets in one place"
+          />
+          <CardCompact
+            className="animate-fade-down animate-duration-800 animate-delay-100 animate-ease-out"
+            title="Create Ticket"
+            description="Create a new ticket"
+          >
+            <TicketUpsertForm />
+          </CardCompact>
+          <Suspense fallback={<Spinner />}>
+            <TicketList />
+          </Suspense>
+        </div>
       </div>
-    </div>
+      <RedirectToast />
+    </>
   );
 };
 export default TicketsPage;
