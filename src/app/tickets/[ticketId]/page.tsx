@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import Placeholder from "@/components/Placeholder";
-import { RedirectToast } from "@/components/RedirectToast";
 import { Button } from "@/components/ui/button";
 import { homePath } from "@/constants/paths";
 import TicketItem from "@/features/ticket/components/TicketItem";
@@ -33,7 +32,6 @@ const TicketPage = async ({ params }: TicketPageProps) => {
       <div className="flex justify-center items-center animate-fade-down animate-duration-800 animate-delay-100 animate-ease-out">
         <TicketItem ticket={ticket} isDetail={true} />
       </div>
-      <RedirectToast />
     </>
   );
 };

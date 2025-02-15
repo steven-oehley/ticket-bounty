@@ -160,3 +160,20 @@ zod library is useful for this
 - most common authentication 
 - our app a redirect throws off the toast notification
 - set cookie and check it so we can display after redirect
+
+
+** Pages vs Layouts
+Moving the toast redirect from page to layout - toast no longer appears
+why is this the case?
+
+Pages re-render for example when we navigate back and forth
+Layouts don't re-render - only re-render their content/children 
+RedirectToast has an effect that runs on mount/render
+Move to layout - never re-render so wont see toast 
+But can just change to run when navigation changes for RedirectToast
+
+
+
+** Layouts vs Templates
+
+** Development vs Production 

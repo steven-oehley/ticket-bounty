@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import Header from "@/components/Header";
+import { RedirectToast } from "@/components/RedirectToast";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -50,6 +51,7 @@ export default function RootLayout({
             {children}
           </main>
           <Toaster />
+          <RedirectToast />
         </ThemeProvider>
       </body>
     </html>
