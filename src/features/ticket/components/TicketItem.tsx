@@ -8,8 +8,15 @@ import {
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ticketEditPath, ticketPath } from "@/constants/paths";
+import { toCurrencyFromCent } from "@/utils/currency";
 
 import { deleteTicket } from "../actions/deleteTicket";
 import { TICKET_ICONS } from "../constants";
@@ -93,7 +100,18 @@ const TicketItem = ({ ticket, isDetail = false }: TicketItemProps) => {
             </span>
           </span>
         </CardContent>
+        <CardFooter>
+          <div>
+            <p className="text-sm text-muted-foreground">
+              Deadline: {ticket.deadline}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Bounty: {toCurrencyFromCent(ticket.bounty)}
+            </p>
+          </div>
+        </CardFooter>
       </Card>
+
       <div className="flex flex-col gap-y-2">
         {!isDetail ? (
           <>

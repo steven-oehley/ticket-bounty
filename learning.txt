@@ -211,6 +211,14 @@ push to db
 then remove defaults if they are not needed/necessary
 run migration again 
 
+can run npm run type-check to check on any regression areas introduced from 
+
+** Working with currencies 
+
+store in cents and convert when displaying and before placing in db
+big.js can help with precision arithmetic 
+
+** Working with dates 
 
 
 

@@ -10,6 +10,7 @@ import { EMPTY_ACTION_STATE } from "@/components/form/utils/fromErrorToActionSta
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { fromCent } from "@/utils/currency";
 
 import { upsertTicket } from "../actions/upsertTicket";
 
@@ -25,7 +26,7 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
 
   return (
     <Form action={action} actionState={actionState}>
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label htmlFor="title">Title</Label>
         <Input
           id="title"
@@ -39,19 +40,50 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpsertFormProps) => {
         <FieldError error={actionState.fieldErrors?.title} />
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label htmlFor="content">Content</Label>
         <Textarea
           id="content"
           name="content"
           placeholder="Enter ticket details..."
-          className="w-full min-h-32"
+          className="w-full min-h-20"
           defaultValue={
             (actionState.payload?.get("content") as string) ?? ticket?.content
           }
         />
         <FieldError error={actionState.fieldErrors?.content} />
       </div>
+
+      <div className="space-y-1">
+        <Label htmlFor="deadline">Deadline</Label>
+        <Input
+          id="deadline"
+          name="deadline"
+          type="date"
+          className="w-full"
+          defaultValue={
+            (actionState.payload?.get("deadline") as string) ?? ticket?.deadline
+          }
+        />
+        <FieldError error={actionState.fieldErrors?.deadline} />
+      </div>
+
+      <div className="space-y-1">
+        <Label htmlFor="bounty">Bounty</Label>
+        <Input
+          id="bounty"
+          name="bounty"
+          type="number"
+          step={0.01}
+          className="w-full"
+          defaultValue={
+            (actionState.payload?.get("bounty") as string) ??
+            (ticket?.bounty ? fromCent(ticket?.bounty) : "")
+          }
+        />
+        <FieldError error={actionState.fieldErrors?.bounty} />
+      </div>
+
       <SubmitButton ticket={ticket} />
       {actionState.message && <p>{actionState.message}</p>}
     </Form>
