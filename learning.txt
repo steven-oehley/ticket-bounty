@@ -220,6 +220,8 @@ big.js can help with precision arithmetic
 
 ** Working with dates 
 
+shadcn date picker 
+add hidden input to pick up the value from 
 
 
 
