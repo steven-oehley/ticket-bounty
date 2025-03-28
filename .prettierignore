@@ -1,0 +1,16 @@
+# Ignore build artifacts
+.next/
+out/
+build/
+dist/
+
+# Ignore dependency directories
+node_modules/
+
+# Ignore coverage reports
+coverage/
+
+# Other common files to ignore
+.vercel
+.github
+pnpm-lock.yaml
