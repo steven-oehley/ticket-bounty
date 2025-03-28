@@ -1,0 +1,10 @@
+# Run type check first - stop if it fails
+echo "🔍 Running type check..."
+pnpm tsc --noEmit || {
+  echo "❌ Type check failed. Please fix errors before committing."
+  exit 1
+}
+
+# Run lint-staged for formatting and linting
+echo "🧹 Running prettier and ESLint..."
+pnpm lint-staged
