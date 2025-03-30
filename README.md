@@ -6,7 +6,7 @@ A modern ticketing platform built with the latest web technologies, following "T
 
 Visit the live application: [https://ticket-bounty-ecru.vercel.app/](https://ticket-bounty-ecru.vercel.app/)
 
-## Tech Stack
+## Tech Stack ⚡️
 
 TicketBounty is built with a powerful, modern tech stack:
 
