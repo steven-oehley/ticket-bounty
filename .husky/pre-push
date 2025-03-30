@@ -1,0 +1,16 @@
+# Run full lint check
+echo "🔍 Running full linting check..."
+npm run lint || {
+  echo "❌ Linting failed. Please fix errors before pushing."
+  exit 1
+}
+
+# Run type check
+echo "🧪 Running complete type check..."
+npm run typecheck || {
+  echo "❌ Type check failed. Please fix errors before pushing."
+  exit 1
+}
+
+# Success message
+echo "✅ Code quality checks passed! Pushing to remote..."

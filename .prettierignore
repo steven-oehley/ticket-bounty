@@ -1,0 +1,48 @@
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Cache
+.eslintcache
+.cache/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Generated files
+coverage/
+.vercel
+.turbo
+storybook-static/
+
+# Public assets
+public/
+
+# Misc
+.DS_Store
+*.pem
+*.log
+tsconfig.tsbuildinfo
+
+# Debug
+.vscode/
+
+

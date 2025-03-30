@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TicketBounty
+
+A modern ticketing platform built with the latest web technologies, following "The Road to Next" development journey.
+
+## Live Demo
+
+Visit the live application: [https://ticket-bounty-ecru.vercel.app/](https://ticket-bounty-ecru.vercel.app/)
+
+## Tech Stack
+
+TicketBounty is built with a powerful, modern tech stack:
+
+- **Next.js 15**: Full-stack React framework with advanced features like React Server Components
+- **React 19**: Component-based UI library for building interactive interfaces
+- **Prisma**: Next-generation TypeScript ORM for database operations
+- **Supabase**: Serverless Postgres database for data storage
+- **TypeScript**: Type-safe JavaScript for more reliable code
+- **Zod**: TypeScript-first schema validation for data integrity
+- **Oslo**: Lightweight authentication library with zero vendor lock-in
+- **Vercel**: Deployment platform optimized for Next.js applications
+- **Tailwind CSS**: Utility-first CSS framework for responsive styling
+- **Shadcn/UI**: Reusable, customizable component library
+
+## Key Features
+
+TicketBounty leverages modern web development concepts including:
+
+- **React Server Components (RSC)** for improved performance and bundle size
+- **Server Actions** for handling form submissions and data mutations
+- **Advanced Data Fetching** patterns with streaming and Suspense
+- **Authentication & Authorization** with custom implementation
+- **Database Integration** with Prisma ORM
+- **Complete CRUD Operations** for ticket management
+- **Multiple Rendering Strategies** (SSR, CSR, SSG, ISR)
+- **Type-Safe Development** with TypeScript and Zod
+- **Responsive Design** using Tailwind CSS
+- **Light & Dark Mode** support
+
+## Project Structure
+
+The application follows a modern, feature-focused structure:
+
+```
+app/
+├── (auth)/           # Authentication routes (sign up, login)
+├── (dashboard)/      # Protected dashboard routes
+│   ├── tickets/      # Ticket management
+│   ├── profile/      # User profile
+│   └── settings/     # User settings
+├── components/       # Shared UI components
+│   ├── ui/           # Base UI components
+│   └── features/     # Feature-specific components
+├── lib/              # Utility functions and shared code
+│   ├── actions/      # Server actions
+│   ├── auth/         # Authentication logic
+│   └── db/           # Database utilities
+├── prisma/           # Database schema and migrations
+└── public/           # Static assets
+```
+
+## Development Approaches
+
+TicketBounty demonstrates several modern development concepts:
+
+- **Layered Architecture**: UI, Action, Query, and API layers
+- **Progressive Enhancement**: Works without JavaScript
+- **Type Safety**: End-to-end type safety with TypeScript and Zod
+- **Optimized Data Fetching**: Sequential and concurrent data fetching patterns
+- **Performance Optimization**: Caching strategies and code splitting
+- **Server-Side Operations**: Sorting, filtering, and pagination
+- **Search Params Handling**: Type-safe URL parameters
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18+ and npm/yarn/pnpm
+- PostgreSQL database or Supabase account
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   git clone https://github.com/yourusername/ticket-bounty.git
+   cd ticket-bounty
+   ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm install
+   # or
+   yarn
+   # or
+   pnpm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Set up environment variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```
+   # Create a .env.local file with the following variables
+   DATABASE_URL="postgresql://..."
+   AUTH_SECRET="your-auth-secret"
+   ```
 
-## Deploy on Vercel
+4. Set up the database:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npx prisma migrate dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Documentation
+
+For more detailed documentation and development notes, please refer to:
+[NextJs - The Road To Next](https://www.notion.so/NextJs-The-Road-To-Next-Basic-1c1008f901fb807488b5f097e39ce93e)
+
+## Deployment
+
+This project is deployed on Vercel. To deploy your own instance:
+
+1. Push your code to a Git repository
+2. Import the project into Vercel
+3. Configure environment variables
+4. Deploy
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
