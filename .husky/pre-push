@@ -1,20 +1,30 @@
-# This script is executed before pushing code to the remote repository.
-echo "🚀 Starting pre-push checks..."
+# Define color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color (resets color)
 
+# Pre-push hook
+# This script is executed before pushing code to the remote repository.
+echo -e "${BLUE}🚀 Starting pre-push checks...${NC}"
 
 # Run full lint check
-echo "🔍 Running full linting check..."
+echo -e "${BLUE}🔍 Running full linting check...${NC}"
 npm run lint || {
-  echo "❌ Linting failed. Please fix errors before pushing."
+  echo -e "${RED}${BOLD}❌ Linting failed. Please fix errors before pushing.${NC}"
   exit 1
 }
 
 # Run type check
-echo "🧪 Running complete type check..."
+echo -e "${BLUE}🧪 Running complete type check...${NC}"
 npm run typecheck || {
-  echo "❌ Type check failed. Please fix errors before pushing."
+  echo -e "${RED}${BOLD}❌ Type check failed. Please fix errors before pushing.${NC}"
   exit 1
 }
 
 # Success message
-echo "✅ Code quality checks passed! Pushing to remote..."
+echo -e "${GREEN}${BOLD}✅ Code quality checks passed! Pushing to remote...${NC}"

@@ -1,10 +1,21 @@
+# Define color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+NC='\033[0m' # No Color (resets color)
+
+# Pre-commit hook
 # Run lint-staged for formatting and linting
-echo "👀 Starting pre-commit checks..."
-echo "🧹 Running prettier and ESLint..."
+echo -e "${BLUE}👀 Starting pre-commit checks...${NC}"
+echo -e "${BLUE}🧹 Running prettier and ESLint...${NC}"
 npx lint-staged || {
-  echo "❌ Linting failed. Please fix errors before committing."
+  echo -e "${RED}${BOLD}❌ Linting failed. Please fix errors before committing.${NC}"
   exit 1
 }
 
 # Success message
-echo "✅ Code quality checks passed! Creating commit..."
+echo -e "${GREEN}${BOLD}✅ Code quality checks passed! Creating commit...${NC}"
