@@ -10,8 +10,8 @@ NC='\033[0m' # No Color (resets color)
 
 # Pre-commit hook
 # Run lint-staged for formatting and linting
-echo  "${BLUE}👀 Starting pre-commit checks...${NC}"
-echo  "${BLUE}🧹 Running prettier and ESLint...${NC}"
+echo  "${YELLOW}${BOLD}👀 Starting pre-commit checks...${NC}"
+echo  "${YELLOW}${BOLD}🧹 Running prettier and ESLint...${NC}"
 npx lint-staged || {
   echo -e "${RED}${BOLD}❌ Linting failed. Please fix errors before committing.${NC}"
   exit 1
