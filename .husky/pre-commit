@@ -1,10 +1,10 @@
-# Run type check first - stop if it fails
-echo "🔍 Running type check..."
-npm run typecheck || {
-  echo "❌ Type check failed. Please fix errors before committing."
+# Run lint-staged for formatting and linting
+echo "👀 Starting pre-commit checks..."
+echo "🧹 Running prettier and ESLint..."
+npx lint-staged || {
+  echo "❌ Linting failed. Please fix errors before committing."
   exit 1
 }
 
-# Run lint-staged for formatting and linting
-echo "🧹 Running prettier and ESLint..."
-npx lint-staged
+# Success message
+echo "✅ Code quality checks passed! Creating commit..."

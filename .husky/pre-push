@@ -1,3 +1,7 @@
+# This script is executed before pushing code to the remote repository.
+echo "🚀 Starting pre-push checks..."
+
+
 # Run full lint check
 echo "🔍 Running full linting check..."
 npm run lint || {
