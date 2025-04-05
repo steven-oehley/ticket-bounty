@@ -12,7 +12,7 @@ const TicketPage = () => {
       <Separator />
       <div className="animate-fade-from-top flex flex-1 flex-col items-center gap-y-4">
         {initialTickets.map((ticket) => (
-          <TicketItem key={ticket.id} ticket={ticket} />
+          <TicketItem key={ticket.id} showOptions={true} ticket={ticket} />
         ))}
       </div>
     </div>

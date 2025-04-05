@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import clsx from 'clsx';
 import { LucideEye } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -11,9 +12,10 @@ import { Ticket } from '../types';
 
 interface TicketItemProps {
   ticket: Ticket;
+  showOptions?: boolean;
 }
 
-const TicketItem = ({ ticket }: TicketItemProps) => {
+const TicketItem = ({ ticket, showOptions = false }: TicketItemProps) => {
   const detailBtn = (
     <Button asChild variant="outline">
       <Link className="text-sm" href={ticketPath(ticket.id)}>
@@ -22,7 +24,12 @@ const TicketItem = ({ ticket }: TicketItemProps) => {
     </Button>
   );
   return (
-    <div className="animate-fade-from-top flex w-full max-w-1/5 gap-x-2">
+    <div
+      className={clsx('animate-fade-from-top flex w-full gap-x-2', {
+        'max-w-1/3': !showOptions,
+        'max-w-1/5': showOptions,
+      })}
+    >
       <Card key={ticket.id} className="w-full">
         <CardHeader>
           <CardTitle className="flex gap-2">
@@ -33,12 +40,16 @@ const TicketItem = ({ ticket }: TicketItemProps) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <span className="line-clamp-3 whitespace-break-spaces">
+          <span
+            className={clsx('line-clamp-3 whitespace-break-spaces', {
+              'line-clamp-3': showOptions,
+            })}
+          >
             {ticket.content}
           </span>
         </CardContent>
       </Card>
-      <div className="flex-col gap-y-1"> {detailBtn}</div>
+      {showOptions ? <div className="flex-col gap-y-1">{detailBtn}</div> : null}
     </div>
   );
 };

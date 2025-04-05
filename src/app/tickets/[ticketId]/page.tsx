@@ -4,6 +4,7 @@ import Placeholder from '@/components/placeholder';
 import { buttonVariants } from '@/components/ui/button';
 import { ticketsPath } from '@/constants/paths';
 import { initialTickets } from '@/data/data';
+import TicketItem from '@/features/ticket/components/ticket-item';
 
 interface TicketPageProps {
   params: Promise<{
@@ -32,9 +33,8 @@ const TicketPage = async ({ params }: TicketPageProps) => {
   }
 
   return (
-    <div>
-      <h2 className="text-lg">{ticket.title}</h2>
-      <p className="text-sm">{ticket.content}</p>
+    <div className="animate-fade-from-top flex flex-col items-center justify-center gap-y-8">
+      <TicketItem ticket={ticket} />
     </div>
   );
 };
