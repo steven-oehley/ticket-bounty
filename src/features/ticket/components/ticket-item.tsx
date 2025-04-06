@@ -26,8 +26,8 @@ const TicketItem = ({ ticket, showOptions = false }: TicketItemProps) => {
   return (
     <div
       className={clsx('animate-fade-from-top flex w-full gap-x-2', {
-        'max-w-1/3': !showOptions,
-        'max-w-1/5': showOptions,
+        'max-w-[420px]': showOptions,
+        'max-w-[580px]': !showOptions,
       })}
     >
       <Card key={ticket.id} className="w-full">
