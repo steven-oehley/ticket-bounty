@@ -1,9 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 
 import { LucideTicket } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { homePath, ticketsPath } from '@/constants/paths';
+
+import ThemeSwitcher from './theme/theme-switcher';
 
 const Header = () => {
   return (
@@ -16,10 +20,11 @@ const Header = () => {
           </Link>
         </Button>
       </div>
-      <div>
+      <div className="flex gap-x-2">
         <Button asChild>
           <Link href={ticketsPath}>Tickets Page</Link>
         </Button>
+        <ThemeSwitcher />
       </div>
     </nav>
   );
