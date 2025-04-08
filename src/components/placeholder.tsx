@@ -18,7 +18,9 @@ const Placeholder = ({
       {/* {cloneElement(icon, {
         className: 'w-16 h-16',
       })} */}
-      {renderIcon({ className: 'w-16 h-16' })}
+      {renderIcon({
+        className: 'w-16 h-16 dark:text-yellow-300 text-orange-400',
+      })}
       <h2 className="text-center text-lg">{label}</h2>
       {button}
     </div>
