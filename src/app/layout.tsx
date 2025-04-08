@@ -36,7 +36,7 @@ export default function RootLayout({
           disableTransitionOnChange
           enableSystem
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
         >
           <Header />
           <main className="bg-secondary/20 flex min-h-screen flex-col overflow-x-hidden overflow-y-auto px-8 py-24">
