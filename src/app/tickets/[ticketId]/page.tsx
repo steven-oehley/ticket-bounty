@@ -14,6 +14,8 @@ interface TicketPageProps {
 
 const TicketPage = async ({ params }: TicketPageProps) => {
   const { ticketId } = await params;
+  // two seconds delay here can cause a full page blocking
+  // solution is streaming
   const ticket = await getTicket(ticketId);
 
   if (!ticket) {
