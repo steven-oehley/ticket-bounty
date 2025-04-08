@@ -19,7 +19,7 @@ const Placeholder = ({
         className: 'w-16 h-16',
       })} */}
       {renderIcon({
-        className: 'w-16 h-16 dark:text-yellow-300 text-orange-400',
+        className: 'w-16 h-16 dark:text-yellow-300 text-yellow-500',
       })}
       <h2 className="text-center text-lg">{label}</h2>
       {button}
