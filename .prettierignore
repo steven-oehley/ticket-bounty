@@ -45,4 +45,4 @@ tsconfig.tsbuildinfo
 # Debug
 .vscode/
 
-
+src/generated/prisma

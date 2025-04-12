@@ -14,7 +14,14 @@ import sortKeysFixPlugin from 'eslint-plugin-sort-keys-fix';
 const eslintConfig = [
   {
     // Global settings
-    ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'dist/**'],
+    ignores: [
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'build/**',
+      'dist/**',
+      'src/generated/**',
+    ],
     languageOptions: {
       ecmaVersion: 2022,
       parser: tsParser,
