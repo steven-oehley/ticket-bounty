@@ -6,9 +6,9 @@ import { LucideEye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ticketPath } from '@/constants/paths';
+import { Ticket } from '@/generated/prisma/client';
 
 import { TICKET_ICONS } from '../constants';
-import { Ticket } from '../types';
 
 interface TicketItemProps {
   ticket: Ticket;
