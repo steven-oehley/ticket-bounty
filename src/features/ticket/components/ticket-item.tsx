@@ -35,7 +35,7 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
   return (
     <div
       className={clsx('animate-fade-from-top flex w-full gap-x-2', {
-        'max-w-[420px]': previewCard,
+        'max-w-[450px]': previewCard,
         'max-w-[580px]': !previewCard,
       })}
     >
