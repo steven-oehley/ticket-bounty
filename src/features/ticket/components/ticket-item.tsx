@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 
 import clsx from 'clsx';
@@ -19,10 +17,6 @@ interface TicketItemProps {
 }
 
 const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
-  const handleDeleteTicket = async () => {
-    await deleteTicket(ticket.id);
-  };
-
   const detailBtn = (
     <Button asChild variant="outline">
       <Link className="text-sm" href={ticketPath(ticket.id)}>
@@ -31,9 +25,11 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
     </Button>
   );
   const deleteBtn = (
-    <Button variant="outline" onClick={handleDeleteTicket}>
-      <LucideTrash2 />
-    </Button>
+    <form action={deleteTicket.bind(null, ticket.id)} method="POST">
+      <Button variant="outline">
+        <LucideTrash2 />
+      </Button>
+    </form>
   );
 
   return (
