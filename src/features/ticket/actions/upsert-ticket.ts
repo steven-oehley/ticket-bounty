@@ -23,7 +23,7 @@ export const upserticket = async (
     create: data,
     update: data,
     where: {
-      id: ticketId,
+      id: ticketId || '',
     },
   });
 
