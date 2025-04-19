@@ -18,7 +18,7 @@ interface TicketItemProps {
 
 const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
   const deleteBtn = (
-    <form action={deleteTicket.bind(null, ticket.id)} method="POST">
+    <form action={deleteTicket.bind(null, ticket.id)}>
       <Button variant="outline">
         <LucideTrash2 />
       </Button>

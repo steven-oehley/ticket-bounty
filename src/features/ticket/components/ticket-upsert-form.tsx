@@ -4,23 +4,24 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Ticket } from '@/generated/prisma';
 
-import { updateTicket } from '../actions/update-ticket';
+import { upserticket } from '../actions/upsert-ticket';
 
 interface TicketUpdateFormProps {
-  ticket: Ticket;
+  ticket?: Ticket | null;
 }
 
-const TicketUpdateForm = ({ ticket }: TicketUpdateFormProps) => {
+const TicketUpsertForm = ({ ticket = null }: TicketUpdateFormProps) => {
+  const ticketId = ticket?.id || '';
   return (
     <form
-      action={updateTicket.bind(null, ticket.id)}
+      action={upserticket.bind(null, ticketId)}
       className="flex flex-col gap-y-3"
     >
       <Label htmlFor="title">Title</Label>
-      <Input defaultValue={ticket.title} id="title" name="title" type="text" />
+      <Input defaultValue={ticket?.title} id="title" name="title" type="text" />
       <Label htmlFor="content">Content</Label>
       <Textarea
-        defaultValue={ticket.content}
+        defaultValue={ticket?.content}
         id="content"
         name="content"
       ></Textarea>
@@ -28,4 +29,4 @@ const TicketUpdateForm = ({ ticket }: TicketUpdateFormProps) => {
     </form>
   );
 };
-export default TicketUpdateForm;
+export default TicketUpsertForm;
