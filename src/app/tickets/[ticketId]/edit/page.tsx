@@ -21,7 +21,7 @@ const TicketEditPage = async ({ params }: TicketEditPageProps) => {
   return (
     <div className="flex flex-1 flex-col items-center justify-center">
       <CardCompact
-        className="animate-fade-from-top w-full max-w-[450px]"
+        className="animate-fade-from-top"
         description="Edit an existing ticket"
         title="Edit Ticket"
       >

@@ -1,5 +1,3 @@
-import clsx from 'clsx';
-
 import {
   Card,
   CardContent,
@@ -8,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 
 interface CardCompactProps {
   title: string;
@@ -25,7 +24,7 @@ const CardCompact = ({
   footer,
 }: CardCompactProps) => {
   return (
-    <Card className={clsx('w-full max-w-[450px] self-center', className)}>
+    <Card className={cn('w-full max-w-[450px] self-center', className)}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
