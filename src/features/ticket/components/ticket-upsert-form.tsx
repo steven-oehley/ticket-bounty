@@ -7,14 +7,13 @@ import { Ticket } from '@/generated/prisma';
 import { upserticket } from '../actions/upsert-ticket';
 
 interface TicketUpdateFormProps {
-  ticket?: Ticket | null;
+  ticket?: Ticket;
 }
 
-const TicketUpsertForm = ({ ticket = null }: TicketUpdateFormProps) => {
-  const ticketId = ticket?.id || '';
+const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
   return (
     <form
-      action={upserticket.bind(null, ticketId)}
+      action={upserticket.bind(null, ticket?.id)}
       className="flex flex-col gap-y-3"
     >
       <Label htmlFor="title">Title</Label>
@@ -25,7 +24,7 @@ const TicketUpsertForm = ({ ticket = null }: TicketUpdateFormProps) => {
         id="content"
         name="content"
       ></Textarea>
-      <Button type="submit">Update</Button>
+      <Button type="submit">{ticket ? 'Update' : 'Create'}</Button>
     </form>
   );
 };
