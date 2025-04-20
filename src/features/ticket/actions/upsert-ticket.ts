@@ -12,6 +12,8 @@ import { prisma } from '@/lib/prisma';
 
 export const upserticket = async (
   ticketId: string | undefined,
+  // when using actionState, we need to pass in the state object
+  actionState: { message: string },
   formData: FormData,
 ) => {
   const data = {
@@ -31,5 +33,13 @@ export const upserticket = async (
   revalidatePath(ticketsPath);
 
   // Redirect to the tickets page after upsert if the ticketId is provided
-  if (ticketId) redirect(ticketsPath);
+  if (ticketId) {
+    actionState.message = 'Ticket updated successfully';
+    redirect(ticketsPath);
+  }
+  // when using actionState, we need to return the state object
+
+  return {
+    message: 'Ticket created successfully',
+  };
 };
