@@ -21,13 +21,13 @@ const upsertTicketSchema = z.object({
     .string()
     .nonempty('Content is required')
     .trim()
-    .min(3, 'Content must be at least 3 characters long')
+    .min(15, 'Content must be at least 3 characters long')
     .max(191, 'Content is too long'),
   title: z
     .string()
     .nonempty('Title is required')
     .trim()
-    .min(15, 'Title must be at least 15 characters long')
+    .min(3, 'Title must be at least 15 characters long')
     .max(1024, 'Title is too long'),
 });
 
@@ -68,6 +68,8 @@ export const upserticket = async (
   // when using actionState, we need to return the state object
 
   return {
+    fieldErrors: {},
     message: 'Ticket created successfully',
+    payload: formData,
   };
 };

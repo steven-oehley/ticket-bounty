@@ -3,6 +3,7 @@
 import { useActionState } from 'react';
 
 import SubmitBtn from '@/components/form/submit-btn';
+import FieldError from '@/components/form/utils/field-error';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,6 +22,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
   const [actionState, action] = useActionState(
     upserticket.bind(null, ticket?.id),
     {
+      fieldErrors: {},
       message: '',
     },
   );
@@ -36,6 +38,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
         name="title"
         type="text"
       />
+      <FieldError actionState={actionState} name="title" />
       <Label htmlFor="content">Content</Label>
       <Textarea
         required
@@ -45,8 +48,11 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
         id="content"
         name="content"
       />
+      <FieldError actionState={actionState} name="content" />
       <SubmitBtn label={ticket ? 'Update' : 'Create'} />
-      <span>{actionState.message}</span>
+      <span className="text-xs text-red-600 dark:text-red-500">
+        {!actionState?.fieldErrors ? actionState.message : null}
+      </span>
     </form>
   );
 };
