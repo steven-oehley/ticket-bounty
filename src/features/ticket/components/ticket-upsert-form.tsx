@@ -28,6 +28,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
     <form action={action} className="flex flex-col gap-y-3">
       <Label htmlFor="title">Title</Label>
       <Input
+        required
         defaultValue={
           (actionState.payload?.get('title') as string) ?? ticket?.title
         }
@@ -37,6 +38,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
       />
       <Label htmlFor="content">Content</Label>
       <Textarea
+        required
         defaultValue={
           (actionState.payload?.get('content') as string) ?? ticket?.content
         }

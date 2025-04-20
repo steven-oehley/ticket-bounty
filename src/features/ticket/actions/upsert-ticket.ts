@@ -5,6 +5,10 @@ import { redirect } from 'next/navigation';
 
 import { z } from 'zod';
 
+import {
+  ActionState,
+  fromErrorToActionState,
+} from '@/components/form/utils/to-action-state';
 import { ticketsPath } from '@/constants/paths';
 import { prisma } from '@/lib/prisma';
 
@@ -15,15 +19,22 @@ import { prisma } from '@/lib/prisma';
 const upsertTicketSchema = z.object({
   content: z
     .string()
-    .min(3, 'Content is required')
+    .nonempty('Content is required')
+    .trim()
+    .min(3, 'Content must be at least 3 characters long')
     .max(191, 'Content is too long'),
-  title: z.string().min(15, 'Title is required').max(1024, 'Title is too long'),
+  title: z
+    .string()
+    .nonempty('Title is required')
+    .trim()
+    .min(15, 'Title must be at least 15 characters long')
+    .max(1024, 'Title is too long'),
 });
 
 export const upserticket = async (
   ticketId: string | undefined,
-  // when using actionState, we need to pass in the state object
-  actionState: { message: string; payload?: FormData },
+  // when using actionState, we need to pass in the state object and taken in here
+  actionState: ActionState,
   formData: FormData,
 ) => {
   try {
@@ -41,12 +52,9 @@ export const upserticket = async (
         id: ticketId || '',
       },
     });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    return {
-      message: 'Something went wrong',
-      payload: formData,
-    };
+    // improve error handling by extracting error handling to function
+    return fromErrorToActionState(error, formData);
   }
 
   // Revalidate the tickets path to ensure the latest data is fetched for both cases
