@@ -4,6 +4,7 @@ import { useActionState } from 'react';
 
 import SubmitBtn from '@/components/form/submit-btn';
 import FieldError from '@/components/form/utils/field-error';
+import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,10 +22,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
   // returns an enhanced action function and a state object
   const [actionState, action] = useActionState(
     upserticket.bind(null, ticket?.id),
-    {
-      fieldErrors: {},
-      message: '',
-    },
+    EMPTY_ACTION_STATE,
   );
   return (
     <form action={action} className="flex flex-col gap-y-3">

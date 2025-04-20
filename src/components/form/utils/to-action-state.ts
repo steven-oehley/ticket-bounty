@@ -3,8 +3,25 @@ import { ZodError } from 'zod';
 export interface ActionState {
   message: string;
   payload?: FormData;
+  status?: 'SUCCESS' | 'ERROR';
   fieldErrors: Record<string, string[] | undefined>;
+  timestamp: number;
 }
+
+export const EMPTY_ACTION_STATE: ActionState = {
+  fieldErrors: {},
+  message: '',
+  timestamp: Date.now(),
+};
+
+export const toActionState = (message: string): ActionState => {
+  return {
+    fieldErrors: {},
+    message,
+    status: 'SUCCESS',
+    timestamp: Date.now(),
+  };
+};
 
 export const fromErrorToActionState = (
   error: unknown,
@@ -22,6 +39,8 @@ export const fromErrorToActionState = (
       // Extract the first error message from the ZodError
       message: '',
       payload: formData,
+      status: 'ERROR',
+      timestamp: Date.now(),
     };
   } else if (error instanceof Error) {
     // Handle other types of errors
@@ -29,6 +48,8 @@ export const fromErrorToActionState = (
       fieldErrors: {},
       message: error.message,
       payload: formData,
+      status: 'ERROR',
+      timestamp: Date.now(),
     };
   } else {
     // Handle other types of errors
@@ -36,6 +57,8 @@ export const fromErrorToActionState = (
       fieldErrors: {},
       message: 'An unexpected error occurred',
       payload: formData,
+      status: 'ERROR',
+      timestamp: Date.now(),
     };
   }
 };

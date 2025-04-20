@@ -8,6 +8,7 @@ import { z } from 'zod';
 import {
   ActionState,
   fromErrorToActionState,
+  toActionState,
 } from '@/components/form/utils/to-action-state';
 import { ticketsPath } from '@/constants/paths';
 import { prisma } from '@/lib/prisma';
@@ -65,11 +66,7 @@ export const upserticket = async (
     actionState.message = 'Ticket updated successfully';
     redirect(ticketsPath);
   }
-  // when using actionState, we need to return the state object
 
-  return {
-    fieldErrors: {},
-    message: 'Ticket created successfully',
-    payload: formData,
-  };
+  // when using actionState, we need to return the state object
+  return toActionState('Ticket created successfully');
 };
