@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 
 import { z } from 'zod';
 
+import { setCookieByKey } from '@/actions/cookies';
 import {
   ActionState,
   fromErrorToActionState,
@@ -63,7 +64,7 @@ export const upserticket = async (
 
   // Redirect to the tickets page after upsert if the ticketId is provided
   if (ticketId) {
-    actionState.message = 'Ticket updated successfully';
+    setCookieByKey('toast', 'Ticket updated successfully');
     redirect(ticketsPath);
   }
 

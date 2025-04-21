@@ -1,15 +1,15 @@
-import Link from 'next/link';
-
 import clsx from 'clsx';
 import { LucideEye, LucidePencilLine, LucideTrash2 } from 'lucide-react';
 
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { editTicketPath, ticketPath } from '@/constants/paths';
 import { Ticket } from '@/generated/prisma/client';
 
 import { deleteTicket } from '../actions/delete-ticket';
 import { TICKET_ICONS } from '../constants';
+
+import ItemActionButton from './item-action-btn';
+import ItemLinkButton from './item-link-btn';
 
 interface TicketItemProps {
   ticket: Ticket;
@@ -18,27 +18,21 @@ interface TicketItemProps {
 
 const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
   const deleteBtn = (
-    <form action={deleteTicket.bind(null, ticket.id)}>
-      <Button variant="outline">
-        <LucideTrash2 />
-      </Button>
-    </form>
+    <ItemActionButton
+      action={deleteTicket.bind(null, ticket.id)}
+      icon={<LucideTrash2 />}
+    />
   );
 
   const detailBtn = (
-    <Button asChild variant="outline">
-      <Link className="text-sm" href={ticketPath(ticket.id)} prefetch={true}>
-        <LucideEye />
-      </Link>
-    </Button>
+    <ItemLinkButton icon={<LucideEye />} path={ticketPath(ticket.id)} />
   );
 
   const editBtn = (
-    <Button asChild variant="outline">
-      <Link href={editTicketPath(ticket.id)} prefetch={true}>
-        <LucidePencilLine />
-      </Link>
-    </Button>
+    <ItemLinkButton
+      icon={<LucidePencilLine />}
+      path={editTicketPath(ticket.id)}
+    />
   );
 
   return (
@@ -70,7 +64,7 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
       <div className="flex-col space-y-2">
         {previewCard && detailBtn}
         {editBtn}
-        {deleteBtn}
+        {!previewCard && deleteBtn}
       </div>
     </div>
   );
