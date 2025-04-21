@@ -11,7 +11,7 @@ import {
   fromErrorToActionState,
   toActionState,
 } from '@/components/form/utils/to-action-state';
-import { ticketsPath } from '@/constants/paths';
+import { ticketPath, ticketsPath } from '@/constants/paths';
 import { prisma } from '@/lib/prisma';
 
 // "Upsert" is a database operation that combines "update" and "insert" functionality. When you perform an upsert:
@@ -65,7 +65,7 @@ export const upserticket = async (
   // Redirect to the tickets page after upsert if the ticketId is provided
   if (ticketId) {
     setCookieByKey('toast', 'Ticket updated successfully');
-    redirect(ticketsPath);
+    redirect(ticketPath(ticketId));
   }
 
   // when using actionState, we need to return the state object
