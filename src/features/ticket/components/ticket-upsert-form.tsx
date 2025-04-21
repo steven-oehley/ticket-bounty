@@ -4,9 +4,10 @@ import { useActionState } from 'react';
 
 import { toast } from 'sonner';
 
+import FieldError from '@/components/form/field-error';
+import Form from '@/components/form/form';
 import { useActionFeedback } from '@/components/form/hooks/use-action-feedback';
 import SubmitBtn from '@/components/form/submit-btn';
-import FieldError from '@/components/form/utils/field-error';
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -41,7 +42,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
   });
 
   return (
-    <form action={action} className="flex flex-col gap-y-3">
+    <Form action={action}>
       <Label htmlFor="title">Title</Label>
       <Input
         required
@@ -64,7 +65,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
       />
       <FieldError actionState={actionState} name="content" />
       <SubmitBtn isPending={isPending} label={ticket ? 'Update' : 'Create'} />
-    </form>
+    </Form>
   );
 };
 export default TicketUpsertForm;
