@@ -2,6 +2,9 @@
 
 import { useActionState } from 'react';
 
+import { toast } from 'sonner';
+
+import { useActionFeedback } from '@/components/form/hooks/use-action-feedback';
 import SubmitBtn from '@/components/form/submit-btn';
 import FieldError from '@/components/form/utils/field-error';
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state';
@@ -24,6 +27,19 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
     upserticket.bind(null, ticket?.id),
     EMPTY_ACTION_STATE,
   );
+
+  useActionFeedback(actionState, {
+    // could also use closures and not need to pass actionState
+    // pass as object so can extend later if needed
+    onError: ({ actionState }) => {
+      // if we have a field error we have no message so don't show toast
+      if (actionState.message) toast.error(actionState.message);
+    },
+    onSuccess: ({ actionState }) => {
+      if (actionState.message) toast.success(actionState.message);
+    },
+  });
+
   return (
     <form action={action} className="flex flex-col gap-y-3">
       <Label htmlFor="title">Title</Label>
@@ -48,9 +64,6 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
       />
       <FieldError actionState={actionState} name="content" />
       <SubmitBtn label={ticket ? 'Update' : 'Create'} />
-      <span className="text-xs text-red-600 dark:text-red-500">
-        {!actionState?.fieldErrors ? actionState.message : null}
-      </span>
     </form>
   );
 };
