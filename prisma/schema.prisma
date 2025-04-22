@@ -22,6 +22,8 @@ model Ticket {
   content   String       @db.VarChar(1024)
   status    TicketStatus @default(OPEN)
   title     String
+  deadline  String
+  bounty    Int
 }
 
 enum TicketStatus {
