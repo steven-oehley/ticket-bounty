@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/card';
 import { editTicketPath, ticketPath } from '@/constants/paths';
 import { Ticket } from '@/generated/prisma/client';
+import { toCurrencyFromCent } from '@/utils/currency';
 
 import { deleteTicket } from '../actions/delete-ticket';
 import { TICKET_ICONS } from '../constants';
@@ -70,7 +71,9 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
           <span className="text-muted-foreground text-xs">
             {ticket.deadline}
           </span>
-          <span className="text-muted-foreground text-xs">{ticket.bounty}</span>
+          <span className="text-muted-foreground text-xs">
+            {toCurrencyFromCent(ticket.bounty)}
+          </span>
         </CardFooter>
       </Card>
       <div className="flex-col space-y-2">

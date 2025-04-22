@@ -13,6 +13,7 @@ import {
 } from '@/components/form/utils/to-action-state';
 import { ticketPath, ticketsPath } from '@/constants/paths';
 import { prisma } from '@/lib/prisma';
+import { toCent } from '@/utils/currency';
 
 // "Upsert" is a database operation that combines "update" and "insert" functionality. When you perform an upsert:
 // If the record already exists in the database, it updates that record with new values
@@ -56,10 +57,16 @@ export const upserticket = async (
       title: formData.get('title'),
     });
 
+    // data transformation to ensure the date is in the correct format
+    const dbData = {
+      ...data,
+      bounty: toCent(data.bounty),
+    };
+
     // try and upsert
     await prisma.ticket.upsert({
-      create: data,
-      update: data,
+      create: dbData,
+      update: dbData,
       where: {
         id: ticketId || '',
       },
