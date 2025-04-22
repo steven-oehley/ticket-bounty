@@ -64,6 +64,38 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
         name="content"
       />
       <FieldError actionState={actionState} name="content" />
+      <div className="flex gap-x-2">
+        <div className="flex w-1/2 flex-col gap-y-1">
+          <Label htmlFor="deadline">Deadline</Label>
+          <Input
+            required
+            defaultValue={
+              (actionState.payload?.get('deadline') as string) ??
+              ticket?.deadline
+            }
+            id="deadline"
+            name="deadline"
+            type="date"
+          />
+          <FieldError actionState={actionState} name="deadline" />
+        </div>
+        <div className="flex w-1/2 flex-col gap-y-1">
+          <Label htmlFor="bounty">Bounty ($)</Label>
+          <Input
+            required
+            defaultValue={
+              (actionState.payload?.get('bounty') as string) ?? ticket?.bounty
+            }
+            id="bounty"
+            max={10000}
+            min={1}
+            name="bounty"
+            step={0.01}
+            type="number"
+          />
+          <FieldError actionState={actionState} name="bounty" />
+        </div>
+      </div>
       <SubmitBtn isPending={isPending} label={ticket ? 'Update' : 'Create'} />
     </Form>
   );

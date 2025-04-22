@@ -19,12 +19,20 @@ import { prisma } from '@/lib/prisma';
 // If the record doesn't exist yet, it inserts a new record
 
 const upsertTicketSchema = z.object({
+  bounty: z.coerce
+    .number()
+    .positive('Bounty must be a positive number')
+    .min(1, 'Bounty must be at least 1')
+    .max(10000, 'Bounty must be at most 10000'),
   content: z
     .string()
     .nonempty('Content is required')
     .trim()
     .min(15, 'Content must be at least 3 characters long')
     .max(191, 'Content is too long'),
+  deadline: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, 'Invalid date format. Use YYYY-MM-DD'),
   title: z
     .string()
     .nonempty('Title is required')
@@ -42,7 +50,9 @@ export const upserticket = async (
   try {
     // try and validate
     const data = upsertTicketSchema.parse({
+      bounty: formData.get('bounty'),
       content: formData.get('content'),
+      deadline: formData.get('deadline'),
       title: formData.get('title'),
     });
 

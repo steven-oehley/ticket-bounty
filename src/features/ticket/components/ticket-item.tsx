@@ -1,7 +1,13 @@
 import clsx from 'clsx';
 import { LucideEye, LucidePencilLine, LucideTrash2 } from 'lucide-react';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { editTicketPath, ticketPath } from '@/constants/paths';
 import { Ticket } from '@/generated/prisma/client';
 
@@ -60,6 +66,12 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
             {ticket.content}
           </span>
         </CardContent>
+        <CardFooter className="flex justify-between">
+          <span className="text-muted-foreground text-xs">
+            {ticket.deadline}
+          </span>
+          <span className="text-muted-foreground text-xs">{ticket.bounty}</span>
+        </CardFooter>
       </Card>
       <div className="flex-col space-y-2">
         {previewCard && detailBtn}
