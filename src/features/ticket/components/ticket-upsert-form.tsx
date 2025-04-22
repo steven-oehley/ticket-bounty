@@ -4,6 +4,7 @@ import { useActionState } from 'react';
 
 import { toast } from 'sonner';
 
+import DatePicker from '@/components/form/date-picker';
 import FieldError from '@/components/form/field-error';
 import Form from '@/components/form/form';
 import { useActionFeedback } from '@/components/form/hooks/use-action-feedback';
@@ -68,7 +69,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
       <div className="flex gap-x-2">
         <div className="flex w-1/2 flex-col gap-y-1">
           <Label htmlFor="deadline">Deadline</Label>
-          <Input
+          {/* <Input
             required
             defaultValue={
               (actionState.payload?.get('deadline') as string) ??
@@ -77,6 +78,14 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
             id="deadline"
             name="deadline"
             type="date"
+          /> */}
+          <DatePicker
+            defaultValue={
+              (actionState.payload?.get('deadline') as string) ??
+              ticket?.deadline
+            }
+            id="deadline"
+            name="deadline"
           />
           <FieldError actionState={actionState} name="deadline" />
         </div>
