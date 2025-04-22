@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 import { toast } from 'sonner';
 
@@ -11,6 +12,8 @@ import { consumeCookiedByKey } from '@/actions/cookies';
 // allows us to keep page a server component
 
 const RedirectToast = () => {
+  const pathname = usePathname();
+
   useEffect(() => {
     const showCookieToast = async () => {
       const message = await consumeCookiedByKey('toast');
@@ -21,7 +24,7 @@ const RedirectToast = () => {
     };
 
     showCookieToast();
-  }, []);
+  }, [pathname]);
 
   return null;
 };
