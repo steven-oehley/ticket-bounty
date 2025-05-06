@@ -1,13 +1,12 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useRef } from 'react';
 
-import { toast } from 'sonner';
-
-import DatePicker from '@/components/form/date-picker';
+import DatePicker, {
+  ImperativeHandlleFromDatePicker,
+} from '@/components/form/date-picker';
 import FieldError from '@/components/form/field-error';
 import Form from '@/components/form/form';
-import { useActionFeedback } from '@/components/form/hooks/use-action-feedback';
 import SubmitBtn from '@/components/form/submit-btn';
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
@@ -31,20 +30,16 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
     EMPTY_ACTION_STATE,
   );
 
-  useActionFeedback(actionState, {
-    // could also use closures and not need to pass actionState
-    // pass as object so can extend later if needed
-    onError: ({ actionState }) => {
-      // if we have a field error we have no message so don't show toast
-      if (actionState.message) toast.error(actionState.message);
-    },
-    onSuccess: ({ actionState }) => {
-      if (actionState.message) toast.success(actionState.message);
-    },
-  });
+  const datePickerImperativeHandleRef =
+    useRef<ImperativeHandlleFromDatePicker>(null);
+  // imperative handle ref to reset the date picker
+
+  const handleSuccess = () => {
+    datePickerImperativeHandleRef.current?.reset();
+  };
 
   return (
-    <Form action={action}>
+    <Form action={action} actionState={actionState} onSuccess={handleSuccess}>
       <Label htmlFor="title">Title</Label>
       <Input
         required
@@ -70,7 +65,8 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
         <div className="flex w-1/2 flex-col gap-y-1">
           <Label htmlFor="deadline">Deadline</Label>
           <DatePicker
-            key={actionState.timestamp}
+            // change reset from using keu to imperative handler
+            // key={actionState.timestamp}
             defaultValue={
               (actionState.payload?.get('deadline') as string) ??
               ticket?.deadline
