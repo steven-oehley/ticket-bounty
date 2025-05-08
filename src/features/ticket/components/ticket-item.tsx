@@ -1,6 +1,12 @@
 import clsx from 'clsx';
-import { LucideEye, LucidePencilLine, LucideTrash2 } from 'lucide-react';
+import {
+  LucideEye,
+  LucideMoreVertical,
+  LucidePencilLine,
+  LucideTrash2,
+} from 'lucide-react';
 
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -17,6 +23,7 @@ import { TICKET_ICONS } from '../constants';
 
 import ItemActionButton from './item-action-btn';
 import ItemLinkButton from './item-link-btn';
+import TicketMoreMenu from './ticket-more-menu';
 
 interface TicketItemProps {
   ticket: Ticket;
@@ -39,6 +46,17 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
     <ItemLinkButton
       icon={<LucidePencilLine />}
       path={editTicketPath(ticket.id)}
+    />
+  );
+
+  const moreMenu = (
+    <TicketMoreMenu
+      ticket={ticket}
+      trigger={
+        <Button size="icon" variant="outline">
+          <LucideMoreVertical className="h-4 w-4" />
+        </Button>
+      }
     />
   );
 
@@ -76,10 +94,11 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
           </span>
         </CardFooter>
       </Card>
-      <div className="flex-col space-y-2">
+      <div className="flex flex-col space-y-2">
         {previewCard && detailBtn}
         {editBtn}
         {!previewCard && deleteBtn}
+        {moreMenu}
       </div>
     </div>
   );

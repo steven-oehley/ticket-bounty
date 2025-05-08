@@ -17,7 +17,7 @@ const ItemLinkButton = ({ path, icon }: ItemLinkButtonProps) => {
   // If we have a path, render a Link inside Button with asChild
   if (path) {
     return (
-      <Button asChild variant="outline">
+      <Button asChild size="icon" variant="outline">
         <Link className="text-sm" href={path} prefetch={true}>
           {icon}
         </Link>
@@ -27,7 +27,7 @@ const ItemLinkButton = ({ path, icon }: ItemLinkButtonProps) => {
 
   // If no path, render a regular button
   return (
-    <Button disabled={pending} variant="outline">
+    <Button disabled={pending} size="icon" variant="outline">
       {!pending && icon}
       {pending && <Spinner inline size="sm" />}
     </Button>
