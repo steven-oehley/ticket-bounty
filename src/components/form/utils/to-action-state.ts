@@ -25,7 +25,7 @@ export const toActionState = (message: string): ActionState => {
 
 export const fromErrorToActionState = (
   error: unknown,
-  formData: FormData,
+  formData?: FormData,
 ): ActionState => {
   // Check if the error is a ZodError
   if (error instanceof ZodError) {
