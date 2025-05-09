@@ -13,7 +13,7 @@ const ThemeSwitcher = () => {
 
   return (
     <div>
-      <Button variant="outline" onClick={handleThemeChange}>
+      <Button variant="ghost" onClick={handleThemeChange}>
         {theme === 'dark' ? (
           <LucideSun className="animate-in fade-in zoom-in duration-300" />
         ) : (
