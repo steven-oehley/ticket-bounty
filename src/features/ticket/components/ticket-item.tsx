@@ -1,12 +1,6 @@
 import clsx from 'clsx';
-import {
-  LucideEye,
-  LucideMoreVertical,
-  LucidePencilLine,
-  LucideTrash2,
-} from 'lucide-react';
+import { LucideEye, LucideMoreVertical, LucidePencilLine } from 'lucide-react';
 
-import ConfirmDialog from '@/components/confirm-dialog';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -19,7 +13,6 @@ import { editTicketPath, ticketPath } from '@/constants/paths';
 import { Ticket } from '@/generated/prisma/client';
 import { toCurrencyFromCent } from '@/utils/currency';
 
-import { deleteTicket } from '../actions/delete-ticket';
 import { TICKET_ICONS } from '../constants';
 
 import ItemLinkButton from './item-link-btn';
@@ -39,17 +32,6 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
     <ItemLinkButton
       icon={<LucidePencilLine />}
       path={editTicketPath(ticket.id)}
-    />
-  );
-
-  const deleteBtn = (
-    <ConfirmDialog
-      action={deleteTicket.bind(null, ticket.id)}
-      trigger={
-        <Button size="icon" variant="outline">
-          <LucideTrash2 className="h-4 w-4" />
-        </Button>
-      }
     />
   );
 
@@ -101,8 +83,7 @@ const TicketItem = ({ ticket, previewCard = false }: TicketItemProps) => {
       <div className="flex flex-col space-y-2">
         {previewCard && detailBtn}
         {editBtn}
-        {!previewCard && deleteBtn}
-        {moreMenu}
+        {!previewCard && moreMenu}
       </div>
     </div>
   );

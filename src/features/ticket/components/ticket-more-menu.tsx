@@ -1,8 +1,9 @@
 'use client';
 
-import { LucideTrash } from 'lucide-react';
+import { LucideTrash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
+import useConfirmDialog from '@/components/confirm-dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,6 +16,7 @@ import {
 import { TICKET_STATUS_LABELS } from '@/features/ticket/constants';
 import { Ticket, TicketStatus } from '@/generated/prisma';
 
+import { deleteTicket } from '../actions/delete-ticket';
 import { updateTicketStatus } from '../actions/update-ticket-status';
 
 type TicketMoreMenuProps = {
@@ -23,6 +25,17 @@ type TicketMoreMenuProps = {
 };
 
 const TicketMoreMenu = ({ ticket, trigger }: TicketMoreMenuProps) => {
+  const [deleteBtn, deleteDialog] = useConfirmDialog({
+    action: deleteTicket.bind(null, ticket.id),
+    description: 'Are you sure you want to delete this ticket?',
+    title: 'Delete Ticket',
+    trigger: (
+      <DropdownMenuItem>
+        <LucideTrash2 className="h-4 w-4" />
+        <span>Delete</span>
+      </DropdownMenuItem>
+    ),
+  });
   const handleTicketStatusUpdate = async (value: string) => {
     const actionResultPromise = updateTicketStatus(
       ticket.id,
@@ -44,13 +57,6 @@ const TicketMoreMenu = ({ ticket, trigger }: TicketMoreMenuProps) => {
     }
   };
 
-  const deleteButton = (
-    <DropdownMenuItem>
-      <LucideTrash className="h-4 w-4" />
-      <span>Delete</span>
-    </DropdownMenuItem>
-  );
-
   const ticketStatusRadioGroupItems = (
     <DropdownMenuRadioGroup
       value={ticket.status}
@@ -65,15 +71,17 @@ const TicketMoreMenu = ({ ticket, trigger }: TicketMoreMenuProps) => {
   );
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
-
-      <DropdownMenuContent className="w-56" side="right">
-        {ticketStatusRadioGroupItems}
-        <DropdownMenuSeparator className="bg-accent my-1 h-0.5" />
-        {deleteButton}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <>
+      {deleteDialog}
+      <DropdownMenu modal={false}>
+        <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56" side="right">
+          {ticketStatusRadioGroupItems}
+          <DropdownMenuSeparator className="bg-accent my-1 h-0.5" />
+          {deleteBtn}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 };
 
