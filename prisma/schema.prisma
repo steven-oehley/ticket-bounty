@@ -15,6 +15,24 @@ datasource db {
   directUrl = env("DIRECT_URL") // For migrations and introspection
 }
 
+model User {
+  id           String    @id @default(cuid())
+  username     String    @unique
+  email        String    @unique
+  passwordHash String
+  sessions     Session[]
+}
+
+model Session {
+  id        String   @id //Lucia will create a unique id for the session so no need for default
+  expiresAt DateTime
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // speed up queries
+  @@index([userId])
+}
+
 model Ticket {
   id        String       @id @default(cuid())
   createdAt DateTime     @default(now())
