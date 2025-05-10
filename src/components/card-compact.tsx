@@ -26,7 +26,7 @@ const CardCompact = ({
   return (
     <Card className={cn('w-full max-w-[450px] self-center', className)}>
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="text-2xl">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
