@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-import { LucideTicket } from 'lucide-react';
+import { LucideLogOut, LucideTicket } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -11,7 +11,9 @@ import {
   signUpPath,
   ticketsPath,
 } from '@/constants/paths';
+import { signOut } from '@/features/auth/actions/sign-out';
 
+import SubmitBtn from './form/submit-btn';
 import ThemeSwitcher from './theme/theme-switcher';
 
 const Header = () => {
@@ -26,6 +28,9 @@ const Header = () => {
       <Button asChild variant="outline">
         <Link href={signUpPath}>Sign Up</Link>
       </Button>
+      <form action={signOut}>
+        <SubmitBtn icon={<LucideLogOut />} label="Sign Out" />
+      </form>
     </>
   );
   return (

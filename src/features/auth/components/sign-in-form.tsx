@@ -11,10 +11,7 @@ import { Input } from '@/components/ui/input';
 import { signIn } from '../actions/sign-in';
 
 const SignInForm = () => {
-  const [actionState, action, isPending] = useActionState(
-    signIn,
-    EMPTY_ACTION_STATE,
-  );
+  const [actionState, action] = useActionState(signIn, EMPTY_ACTION_STATE);
   return (
     <Form action={action} actionState={actionState}>
       <Input
@@ -31,7 +28,7 @@ const SignInForm = () => {
         type="password"
       />
       <FieldError actionState={actionState} name="password" />
-      <SubmitBtn isPending={isPending} label="Sign In" />
+      <SubmitBtn label="Sign In" />
     </Form>
   );
 };

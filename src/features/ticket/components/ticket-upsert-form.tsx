@@ -25,7 +25,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
   // allows us to attach state to the action we pass in
   // also requires initial state to be passed in
   // returns an enhanced action function and a state object
-  const [actionState, action, isPending] = useActionState(
+  const [actionState, action] = useActionState(
     upserticket.bind(null, ticket?.id),
     EMPTY_ACTION_STATE,
   );
@@ -94,7 +94,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpdateFormProps) => {
           <FieldError actionState={actionState} name="bounty" />
         </div>
       </div>
-      <SubmitBtn isPending={isPending} label={ticket ? 'Update' : 'Create'} />
+      <SubmitBtn label={ticket ? 'Update' : 'Create'} />
     </Form>
   );
 };
