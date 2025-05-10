@@ -29,5 +29,5 @@ export const updateTicketStatus = async (
 
   revalidatePath(ticketsPath);
 
-  return toActionState('Ticket status updated successfully');
+  return toActionState('SUCCESS', 'Ticket status updated successfully');
 };

@@ -14,11 +14,16 @@ export const EMPTY_ACTION_STATE: ActionState = {
   timestamp: Date.now(),
 };
 
-export const toActionState = (message: string): ActionState => {
+export const toActionState = (
+  status: 'SUCCESS' | 'ERROR',
+  message: string,
+  formData?: FormData,
+): ActionState => {
   return {
     fieldErrors: {},
     message,
-    status: 'SUCCESS',
+    payload: formData,
+    status,
     timestamp: Date.now(),
   };
 };

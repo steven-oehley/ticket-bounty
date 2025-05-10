@@ -8,22 +8,15 @@ import SubmitBtn from '@/components/form/submit-btn';
 import { EMPTY_ACTION_STATE } from '@/components/form/utils/to-action-state';
 import { Input } from '@/components/ui/input';
 
-import { signUp } from '../actions/sign-up';
+import { signIn } from '../actions/sign-in';
 
-const SignUpForm = () => {
+const SignInForm = () => {
   const [actionState, action, isPending] = useActionState(
-    signUp,
+    signIn,
     EMPTY_ACTION_STATE,
   );
   return (
     <Form action={action} actionState={actionState}>
-      <Input
-        defaultValue={actionState.payload?.get('username') as string}
-        name="username"
-        placeholder="Username"
-        type="text"
-      />
-      <FieldError actionState={actionState} name="username" />
       <Input
         defaultValue={actionState.payload?.get('email') as string}
         name="email"
@@ -38,15 +31,8 @@ const SignUpForm = () => {
         type="password"
       />
       <FieldError actionState={actionState} name="password" />
-      <Input
-        defaultValue={actionState.payload?.get('confirmPassword') as string}
-        name="confirmPassword"
-        placeholder="Confirm Password"
-        type="password"
-      />
-      <FieldError actionState={actionState} name="confirmPassword" />
-      <SubmitBtn isPending={isPending} label="Sign Up" />
+      <SubmitBtn isPending={isPending} label="Sign In" />
     </Form>
   );
 };
-export default SignUpForm;
+export default SignInForm;

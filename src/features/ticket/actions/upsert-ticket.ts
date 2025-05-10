@@ -86,5 +86,5 @@ export const upserticket = async (
   }
 
   // when using actionState, we need to return the state object
-  return toActionState('Ticket created successfully');
+  return toActionState('SUCCESS', 'Ticket created successfully');
 };

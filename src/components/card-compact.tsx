@@ -30,7 +30,9 @@ const CardCompact = ({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>{children}</CardContent>
-      {footer && <CardFooter>{footer}</CardFooter>}
+      {footer && (
+        <CardFooter className="flex justify-between">{footer}</CardFooter>
+      )}
     </Card>
   );
 };
