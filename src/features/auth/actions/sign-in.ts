@@ -1,9 +1,7 @@
 'use server';
 
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { verify } from '@node-rs/argon2';
 import { z } from 'zod';
 
 import {
@@ -12,8 +10,12 @@ import {
   toActionState,
 } from '@/components/form/utils/to-action-state';
 import { ticketsPath } from '@/constants/paths';
-import { lucia } from '@/lib/lucia';
+import { verifyPasswordHash } from '@/features/password/utils/hash-and-verify';
+import { createSession } from '@/lib/lucia';
 import { prisma } from '@/lib/prisma';
+import { generateRandomToken } from '@/utils/crypto';
+
+import { setSessionCookie } from '../utils/session-cookie';
 
 const signInSchema = z.object({
   email: z
@@ -49,21 +51,19 @@ export const signIn = async (actionState: ActionState, formData: FormData) => {
       return toActionState('ERROR', 'Incorrect email or password', formData);
     }
 
-    const validPassword = await verify(user.passwordHash, data.password);
+    const validPassword = await verifyPasswordHash(
+      user.passwordHash,
+      data.password,
+    );
 
     if (!validPassword) {
       return toActionState('ERROR', 'Incorrect email or password', formData);
     }
 
-    const session = await lucia.createSession(user.id, {});
+    const sessionToken = generateRandomToken();
+    const session = await createSession(sessionToken, user.id);
 
-    const sessionCookie = lucia.createSessionCookie(session.id);
-
-    (await cookies()).set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes,
-    );
+    await setSessionCookie(sessionToken, session.expiresAt);
   } catch (error) {
     return fromErrorToActionState(error, formData);
   }

@@ -1,9 +1,7 @@
 'use server';
 
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-import { hash } from '@node-rs/argon2';
 import { z } from 'zod';
 
 import {
@@ -12,9 +10,13 @@ import {
   toActionState,
 } from '@/components/form/utils/to-action-state';
 import { ticketsPath } from '@/constants/paths';
+import { hashPassword } from '@/features/password/utils/hash-and-verify';
 import { Prisma } from '@/generated/prisma';
-import { lucia } from '@/lib/lucia';
+import { createSession } from '@/lib/lucia';
 import { prisma } from '@/lib/prisma';
+import { generateRandomToken } from '@/utils/crypto';
+
+import { setSessionCookie } from '../utils/session-cookie';
 
 const signUpSchema = z
   .object({
@@ -59,7 +61,7 @@ export const signUp = async (actionState: ActionState, formData: FormData) => {
       username: formData.get('username'),
     });
 
-    const passwordHash = await hash(data.password);
+    const passwordHash = await hashPassword(data.password);
 
     const user = await prisma.user.create({
       data: {
@@ -68,16 +70,10 @@ export const signUp = async (actionState: ActionState, formData: FormData) => {
         username: data.username,
       },
     });
+    const sessionToken = generateRandomToken();
+    const session = await createSession(sessionToken, user.id);
 
-    const session = await lucia.createSession(user.id, {});
-
-    const sessionCookie = lucia.createSessionCookie(session.id);
-
-    (await cookies()).set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes,
-    );
+    await setSessionCookie(sessionToken, session.expiresAt);
   } catch (error) {
     if (
       error instanceof Prisma.PrismaClientKnownRequestError &&
