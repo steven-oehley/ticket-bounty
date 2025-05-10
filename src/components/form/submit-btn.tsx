@@ -1,3 +1,5 @@
+'use client';
+
 import { cloneElement } from 'react';
 import { useFormStatus } from 'react-dom';
 
